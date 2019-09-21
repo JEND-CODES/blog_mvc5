@@ -3,7 +3,7 @@
 class Database2
 {
 
-	protected function db_connect()
+	protected function bdd_connected()
     {
     
     	$db = new \PDO('mysql:host=localhost;dbname=bootmvc30;charset=utf8', 'root', '');
