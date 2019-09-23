@@ -1,13 +1,7 @@
 <?php
-class RepositoryChapter
+class RepositoryChapter extends Database2
 {
-    private $_bdd;
     
-    public function __construct($bdd)
-    {
-        //instanciation pour database connexion
-        $this->setBdd($bdd);
-    }
 
     //Création de méthodes -> Pour la déclaration de méthodes, il suffit de faire précéder le mot-clé function à la visibilité de la méthode
     
@@ -22,7 +16,7 @@ class RepositoryChapter
     {  
         $chapters = array();
         
-        $req = $this->_bdd->query('SELECT id, title, content, chapi, alarm, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate, DATE_FORMAT(refreshdate, \'%d/%m/%Y à %Hh %imin %ss\') AS refreshDate FROM chapters ORDER BY id DESC');
+        $req = $this->connectDB()->query('SELECT id, title, content, chapi, alarm, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate, DATE_FORMAT(refreshdate, \'%d/%m/%Y à %Hh %imin %ss\') AS refreshDate FROM chapters ORDER BY id DESC');
         $req->execute();
         
         //La signification d'une boucle while est très simple. PHP exécute l'instruction tant que l'expression de la boucle while est évaluée comme TRUE. La valeur de l'expression est vérifiée à chaque début de boucle, et, si la valeur change durant l'exécution de l'instruction, l'exécution ne s'arrêtera qu'à la fin de l'itération
