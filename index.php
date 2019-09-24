@@ -21,11 +21,6 @@ spl_autoload_register(function($class){
     require('models/' .$class. '.php');
 });
 
-require_once('models/Database.php');
-
-?>
-
-<?php
 try
 {
    
@@ -56,7 +51,14 @@ catch(Exception $e)
     require_once('views/viewError.php');
 }
 
-?>
+//Appel des classes et des fonctions des controllers :
+
+if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'biographie') {
+            $controllerBiographie = new ControllerBiographie();
+            $controllerBiographie->Biographie();
+        }
+}
 
 
 
