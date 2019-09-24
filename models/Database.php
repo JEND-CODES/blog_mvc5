@@ -1,17 +1,15 @@
 <?php 
 
-// Test de remplacement numéro 1
-
 class Database
 {
-
-	protected function connect_bdd()
+	
+    protected function connectDB()
     {
     
-    	$db = new \PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-
+    	$db = new PDO('mysql:host=localhost;dbname=bootmvc30;charset=utf8', 'root', '');
+        
     	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        
     	return $db;
     }
 }
