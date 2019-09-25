@@ -18,8 +18,13 @@
 
     <link rel="stylesheet" href="<?= URL.'content/style.css' ?>" />
 
-    <link href="https://fonts.googleapis.com/css?family=Zeyada&display=swap" rel="stylesheet">
-
+    <!-- Police du site -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    
+    <!-- Police du Slideshow -->
+    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
+    
+    <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/5k258xz8b8894li1zboryqoh74ms5pwkns3ket7ysg708h1g/tinymce/5/tinymce.min.js"></script>
 
     <!--Chargement Langage Fr TinyMCE-->
@@ -85,7 +90,7 @@
 
                         <li><a href="<?= URL.'biographie' ?>" class="bounce-text">Biographie</a></li>
 
-                        <li><a href="<?= URL.'index.php#chapitres' ?>" class="bounce-text">Chapitres</a></li>
+                        <li class="scroll"><a href="<?= URL.'index.php#chapitres' ?>" class="bounce-text">Chapitres</a></li>
                         
                         <li><a href="<?= URL.'sommaire' ?>" class="bounce-text">Sommaire</a></li>
 
