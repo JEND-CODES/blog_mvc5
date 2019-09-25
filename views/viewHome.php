@@ -13,7 +13,7 @@
 
             <div class="caption center-align">
 
-                <h3><?= $background->title() ?></h3>
+                <h3 class="slide_title"><?= $background->title() ?></h3>
 
             </div>
         </li>
@@ -23,12 +23,13 @@
     </ul>
 </div>
 
+
 <div id="chapitres"></div>
 
 <br><br><br><br>
 
 <div class="home-sub">
-    <h4>Dernières publications</h4>
+    <h5>Dernières publications</h5>
 </div>
 
 <div class="container">
@@ -42,10 +43,10 @@
                 <div class="card-content">
 
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>">
-                        <h4>Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></h4>
+                        <p class="post-title">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
                     </a>
 
-                    <h5><?= $chapter->content() ?>...</h5>
+                    <h5 class="post-content"><?= $chapter->content() ?>...</h5>
 
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
@@ -76,7 +77,7 @@
 
                     <div class="card-content">
 
-                        <h4>Contacter l'auteur</h4>
+                        <h5 class="adjust-p">Contacter l'auteur</h5>
 
                         <form action="#stayhere" method="post">
 
