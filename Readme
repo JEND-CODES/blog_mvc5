@@ -12,3 +12,4 @@ Avancées principales :
 -> Simplifications des requêtes SQL
 -> Nouveaux réglages DATE_FORMAT SQL
 -> Ajout d'une méthode substr() dans la vue Accueil
+-> Nouveaux transferts FTP
