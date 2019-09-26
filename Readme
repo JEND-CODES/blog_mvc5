@@ -8,6 +8,7 @@ Avancées principales :
 -> Corrections d'erreurs HTML
 -> Révision des Polices du site
 -> Réglages Responsive Design
+-> Retouches des fichiers Models
 -> Simplifications des requêtes SQL
--> Nouveaux réglages des DATE_FORMAT SQL
+-> Nouveaux réglages DATE_FORMAT SQL
 -> Ajout d'une méthode substr() dans la vue Accueil
