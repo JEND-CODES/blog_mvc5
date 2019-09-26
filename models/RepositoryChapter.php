@@ -2,12 +2,22 @@
 
 class RepositoryChapter extends Database
 {
-   
+    private $_dateFormat_1;
+    private $_dateFormat_2;
+    
+    public function __construct(){
+        
+        // Construction de formats des dates pour simplifier les différents appels dans les requêtes SQL :
+        
+        $this->_dateFormat_1 = 'DATE_FORMAT(date, "%d/%m/%Y à %Hh %imin %ss") AS chapterDate, DATE_FORMAT(refreshdate, "%d/%m/%Y à %Hh %imin %ss") AS refreshDate';
+        
+        $this->_dateFormat_2 = 'DATE_FORMAT(date, "%d/%m/%Y") AS chapterDate';
+        
+    }
     //Création de méthodes -> Pour la déclaration de méthodes, il suffit de faire précéder le mot-clé function à la visibilité de la méthode
     
     //CF. Tuto OpenC https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet
-    
-    //https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires
+     //https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires
     
     //Cf. méthode FETCH https://www.php.net/manual/fr/pdostatement.fetch.php
     
@@ -16,13 +26,20 @@ class RepositoryChapter extends Database
     {  
         $chapters = array();
         
-        $req = $this->connectDB()->query('SELECT id, title, content, chapi, alarm, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate, DATE_FORMAT(refreshdate, \'%d/%m/%Y à %Hh %imin %ss\') AS refreshDate FROM chapters ORDER BY id DESC');
+        $req = $this->connectDB()->query(
+            'SELECT *, 
+            '.$this->_dateFormat_1.' 
+            FROM chapters 
+            ORDER BY id 
+            DESC'
+        );
+        
         $req->execute();
         
         //La signification d'une boucle while est très simple. PHP exécute l'instruction tant que l'expression de la boucle while est évaluée comme TRUE. La valeur de l'expression est vérifiée à chaque début de boucle, et, si la valeur change durant l'exécution de l'instruction, l'exécution ne s'arrêtera qu'à la fin de l'itération
-        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        while($data = $req->fetch())
         { 
-            // PDO::FETCH_ASSOC -> Chaque entrée sera récupérée et placée dans un array
+            // Cf.Database.php -> PDO::FETCH_ASSOC -> Chaque entrée sera récupérée et placée dans un array
             
             $chapters[] = new Chapter($data);
         }
@@ -32,14 +49,21 @@ class RepositoryChapter extends Database
         
     }
     
-    // Récupération de tous les chapitres (Pour page Accueil) + nombre de caractères limités
-    public function selectChapters1()
+    // Récupération de tous les chapitres (Pour page Accueil) + nombre de caractères limités (SUBSTRING réglé dans viewHome)
+    public function selectChaptersDesc()
     {  
         $chapters1 = array();
         
-        $req = $this->connectDB()->query('SELECT id, title, SUBSTRING(content, 1, 380) AS content, chapi, alarm, zerolink, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate FROM chapters ORDER BY id DESC LIMIT 0,3');
+        $req = $this->connectDB()->query(
+            'SELECT * 
+            FROM chapters 
+            ORDER BY id 
+            DESC 
+            LIMIT 0,3'
+        );
+        
         $req->execute();
-        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        while($data = $req->fetch())
         {
             $chapters1[] = new Chapter($data);
         }
@@ -49,13 +73,19 @@ class RepositoryChapter extends Database
     }
     
     // Récupération de tous les chapitres en ordre inversé (Pour page Sommaire)
-    public function selectChapters2()
+    public function selectChaptersAsc()
     {  
         $chapters2 = array();
         
-        $req = $this->connectDB()->query('SELECT id, title, content, chapi, alarm, zerolink, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate FROM chapters ORDER BY id ASC');
+        $req = $this->connectDB()->query(
+            'SELECT * 
+            FROM chapters 
+            ORDER BY id 
+            ASC'
+        );
+        
         $req->execute();
-        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        while($data = $req->fetch())
         {
             $chapters2[] = new Chapter($data);
         }
@@ -67,12 +97,17 @@ class RepositoryChapter extends Database
     // Récupération d'un chapitre spécifique (pour affichage en Back Office avec date de mise à jour)
     public function selectChapter($id)
     {
-        $req = $this->connectDB()->prepare('SELECT id, title, content, chapi, zerolink, alarm, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS chapterDate, DATE_FORMAT(refreshdate, \'%d/%m/%Y à %Hh %imin %ss\') AS refreshDate FROM chapters WHERE id = ?');
+        $req = $this->connectDB()->prepare(
+            'SELECT * 
+            FROM chapters 
+            WHERE id = ?'
+        );
+        
         $req->execute(array($id));
         //https://www.php.net/manual/fr/pdostatement.rowcount.php
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             return new Chapter($data);   
         }
         else
@@ -82,14 +117,20 @@ class RepositoryChapter extends Database
     }
     
     // Récupération d'un chapitre spécifique avec format de date modifié (pour affichage page spécifique d'un chapitre)
-    public function selectChapter1($id)
+    public function selectChapterFront($id)
     {
-        $req = $this->connectDB()->prepare('SELECT id, title, content, chapi, alarm, DATE_FORMAT(date, \'%d/%m/%Y\') AS chapterDate FROM chapters WHERE id = ?');
+        $req = $this->connectDB()->prepare(
+            'SELECT *, 
+            '.$this->_dateFormat_2.' 
+            FROM chapters 
+            WHERE id = ?'
+        );
+        
         $req->execute(array($id));
         //https://www.php.net/manual/fr/pdostatement.rowcount.php
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             return new Chapter($data);   
         }
         else
@@ -138,7 +179,7 @@ class RepositoryChapter extends Database
         
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             return new Chapter($data);   
         }
         $req->closeCursor();
@@ -152,7 +193,7 @@ class RepositoryChapter extends Database
         
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             return new Chapter($data);   
         }
         $req->closeCursor();
