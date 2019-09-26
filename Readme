@@ -1,10 +1,13 @@
-Correctifs du projet précédent
--> Tests d'extension de la classe Database
--> Tests de fonctions publiques Controllers
+Avancées principales :
+-> Extension de la classe Database
+-> Fonctions publiques Controllers
 -> Appel des classes Controllers dans le Router
 -> Programmation orientée objets des Controllers
 -> Méthode __construct() et ajout de propriétés privées
--> Quelques révisions de l'architecture du projet
--> En cours de quelques corrections d'erreurs HTML
--> En cours de révision de la Police du site
--> Réglages responsive design
+-> Révisions de l'architecture du projet
+-> Corrections d'erreurs HTML
+-> Révision des Polices du site
+-> Réglages Responsive Design
+-> Simplifications des requêtes SQL
+-> Nouveaux réglages des DATE_FORMAT SQL
+-> Ajout d'une méthode substr() dans la vue Accueil
