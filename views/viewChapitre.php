@@ -7,31 +7,140 @@ $nav_title = $chapter->title();
 
 </header>
 
+<?php 
+
+// Méthode d'affichage aléatoire des images Parallaxes en haut
+        $dir = 'content/random/';
+
+          $imgs_arr = array();
+
+          if (file_exists($dir) && is_dir($dir) ) {
+
+              $dir_arr = scandir($dir);
+              $arr_files = array_diff($dir_arr, array('.','..') );
+
+              foreach ($arr_files as $file) {
+                $file_path = $dir."/".$file;
+                $ext = pathinfo($file_path, PATHINFO_EXTENSION);
+                if ($ext=="jpg" || $ext=="png" || $ext=="JPG" || $ext=="PNG") {
+                  array_push($imgs_arr, $file);
+                }
+
+              }
+              $count_img_index = count($imgs_arr) - 1;
+              $random_img = $imgs_arr[rand( 0, $count_img_index )];
+          }
+?>
+
 <div class="parallax-container">
     <div class="parallax">
 
         <img src="<?php echo $dir."/".$random_img ?>" alt="illustration" title="illustration">
 
         <div id="chapter-title">
+
             <p id="chapter-title2">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
+
         </div>
 
     </div>
 </div>
 
-<div class="section white">
-    <div class="row container">
+<p class="signature">publié le <?= $chapter->chapterDate() ?></p>
 
-        <p><?= $chapter->content() ?></p>
-        
-        <br>
-        
-        <p class="signature">Chapitre publié le <?= $chapter->chapterDate() ?></p>
+<br>
 
-        <br>
+<div class="button-parts">
+    
+    <?php 
+    // Si la longueur du chapitre dépasse 3500 caractères.. On montre les boutons des parties 1 et 2 du chapitre :
+    
+    // Interactive bookmarks chapter parts 1 and 2 
+    if(strlen($chapter->content()) > 3500): ?>
 
-    </div>
+        <button class="btn waves-effect waves-light" id="bookmark1"><i class="far fa-bookmark"></i> 1 </button>
+
+        <button class="btn waves-effect waves-light" id="bookmark2"><i class="far fa-bookmark"></i> 2 </button>
+
+    <?php endif; ?>
+
+    <?php 
+    // Si la longueur du chapitre dépasse 7000 caractères.. On montre le bouton de la partie 3 du chapitre :    
+
+    // Interactive bookmark chapter part 3
+    if(strlen($chapter->content()) > 7000): ?>
+
+        <button class="btn waves-effect waves-light" id="bookmark3"><i class="far fa-bookmark"></i> 3 </button>
+
+    <?php endif; ?>
+    
 </div>
+
+        <h5 class="post-content" id="chapter-part1">
+            <?= 
+            // Starting point : 0
+            // Showing 3500
+            substr($chapter->content(), 0, 3500); ?>
+            </h5>
+
+    <?php 
+    // Affichage onglet partie 2 du chapitre
+    if(strlen($chapter->content()) >= 3500): ?>
+
+
+            <h5 id="chapter-part2">
+                <?= 
+            // Starting point : 3500
+            // Showing more 3500
+            substr($chapter->content(), 3500, 3500); ?>
+            </h5>
+
+
+    <?php endif; ?>
+
+    <?php 
+    // Affichage onglet partie 3 du chapitre
+    if(strlen($chapter->content()) >= 7000): ?>
+
+
+            <h5 id="chapter-part3">
+                <?= 
+                // Starting point : 7000
+                // Showing all after this point..
+                substr($chapter->content(), 7000); ?>
+            </h5>
+
+
+    <?php endif; ?>
+
+<br>
+<br>
+
+<?php 
+
+    // Méthode d'affichage aléatoire des images Parallaxes en bas
+        $dir2 = 'content/random/';
+
+          $imgs_arr2 = array();
+
+          if (file_exists($dir2) && is_dir($dir2) ) {
+
+              $dir_arr2 = scandir($dir2);
+              $arr_files2 = array_diff($dir_arr2, array('.','..') );
+
+              foreach ($arr_files2 as $file2) {
+                $file_path2 = $dir2."/".$file2;
+                $ext2 = pathinfo($file_path2, PATHINFO_EXTENSION);
+                if ($ext2=="jpg" || $ext2=="png" || $ext2=="JPG" || $ext2=="PNG") {
+                  array_push($imgs_arr2, $file2);
+                }
+
+              }
+              $count_img_index2 = count($imgs_arr2) - 1;
+              $random_img2 = $imgs_arr2[rand( 0, $count_img_index2 )];
+          }
+
+?>
 
 <div class="parallax-container">
     <div class="parallax">
@@ -65,7 +174,7 @@ $nav_title = $chapter->title();
     <br>
 
     <!-- Appréciation du chapitre-->
-    <p id="chap-like">Avez-vous apprécié ce chapitre ?</p>
+    <p>Avez-vous apprécié ce chapitre ?</p>
 
     <?php 
                 
@@ -93,10 +202,8 @@ $nav_title = $chapter->title();
 
     <form id="form" action="#victory" method="post">
 
-        
-
         <div class="centered">
-            <h4 class="flower">Commenter ce chapitre</h4>
+            <h5 class="flower">Commenter ce chapitre</h5>
         </div>
 
         <div class="input-field col s6">
@@ -111,7 +218,7 @@ $nav_title = $chapter->title();
         <textarea name="comment" id="comment"><?php if(isset($comment)) echo $comment; ?></textarea>
 
         <br />
-        <input type="submit" name="add" class="btn right" value="Envoyer" onclick="return(confirm('Validez-vous ce choix ?'));"/>
+        <input type="submit" name="add" class="btn right" value="Envoyer" onclick="return(confirm('Validez-vous ce choix ?'));" />
     </form>
     <br />
 
@@ -132,21 +239,21 @@ $nav_title = $chapter->title();
     </div>
 
     <div class="container" id="ghost1">
-        
+
         <?php 
                 
         if(!empty($errors)): ?>
-        
+
         <br>
 
         <?php foreach($errors as $error): ?>
 
         <div class="centered">
-        <p><?= $error ?></p>
+            <p><?= $error ?></p>
         </div>
 
         <?php endforeach; ?>
-        
+
         <br>
 
         <?php endif; ?>
@@ -201,7 +308,7 @@ $nav_title = $chapter->title();
 
     <div class="container" id="ghost2">
 
-        <h4><?= $nocomment ?> (total&#8239;:&#8239;<?= $countComments ?>)</h4>
+        <h5><?= $nocomment ?> (total&#8239;:&#8239;<?= $countComments ?>)</h5>
         <br>
 
         <?php
