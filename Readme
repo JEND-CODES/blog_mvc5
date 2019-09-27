@@ -11,7 +11,7 @@ Avancées principales :
 -> Retouches des fichiers Models
 -> Simplifications des requêtes SQL
 -> Nouveaux réglages DATE_FORMAT SQL
--> Ajout d'une méthode substr() dans la vue Accueil
+-> Nouveaux réglages substr() pour viewHome et viewChapitre
 -> Nouveaux transferts FTP
 -> Ajout d'une pagination sur la page Chapitre
 -> Nouvelles animations jQuery
