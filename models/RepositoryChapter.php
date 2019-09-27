@@ -11,7 +11,7 @@ class RepositoryChapter extends Database
         
         $this->_dateFormat_1 = 'DATE_FORMAT(date, "%d/%m/%Y à %Hh %imin %ss") AS chapterDate, DATE_FORMAT(refreshdate, "%d/%m/%Y à %Hh %imin %ss") AS refreshDate';
         
-        $this->_dateFormat_2 = 'DATE_FORMAT(date, "%d/%m/%Y") AS chapterDate';
+        $this->_dateFormat_2 = 'DATE_FORMAT(date, "%d.%m.%Y") AS chapterDate';
         
     }
     //Création de méthodes -> Pour la déclaration de méthodes, il suffit de faire précéder le mot-clé function à la visibilité de la méthode
@@ -20,7 +20,7 @@ class RepositoryChapter extends Database
      //https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires
     
     //Cf. méthode FETCH https://www.php.net/manual/fr/pdostatement.fetch.php
-    
+   
     // Récupération de tous les chapitres sous forme d'objets dans un tableau (Array pour l'édition en Back Office)
     public function selectChapters()
     {  
@@ -120,8 +120,8 @@ class RepositoryChapter extends Database
     public function selectChapterFront($id)
     {
         $req = $this->connectDB()->prepare(
-            'SELECT *, 
-            '.$this->_dateFormat_2.' 
+            'SELECT *,
+            '.$this->_dateFormat_2.'
             FROM chapters 
             WHERE id = ?'
         );
@@ -138,7 +138,7 @@ class RepositoryChapter extends Database
 
         $req->closeCursor();
     }
-    
+   
     // Ajout d'un chapitre
     public function insertChapter($edit)
     {
@@ -147,7 +147,7 @@ class RepositoryChapter extends Database
         $req->closeCursor();    
     }
    
-    // Mise à jour d'un chapitre (spécifie aussi la date de mise à jour qui ne sera plus valeur NULL par défaut)
+    // Mise à jour d'un chapitre (spécifie aussi la date de mise à jour qui ne sera plus valeur NULL par défaut dans la colonne SQL)
     public function updateChapter($chapter)
     {
         $req = $this->connectDB()->prepare('UPDATE chapters SET title = ?, content = ?, chapi = ?, zerolink = ?, refreshdate = NOW() WHERE id = ?');
