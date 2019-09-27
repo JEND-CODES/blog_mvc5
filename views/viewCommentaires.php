@@ -38,7 +38,7 @@ $nav_title = "Gestion des commentaires";
 
                 <?php endif; ?>
 
-                <h4 class='header'>&nbsp;Signalements</h4>
+                <h5 class='header'>&nbsp;Signalements</h5>
                 
                 <ul class="collection">
 
@@ -71,7 +71,7 @@ $nav_title = "Gestion des commentaires";
 
             <div id="test2" class="col s12">
 
-                <h4 class='header'>&nbsp;Commentaires</h4>
+                <h5 class='header'>&nbsp;Commentaires</h5>
 
                 <ul class="collection">
 
