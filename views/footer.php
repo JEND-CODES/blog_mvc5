@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Publications de Jean Forteroche</h5>
+                <h5 class="white-text" id="footer-t1">Publications de Jean Forteroche</h5>
 
                 <div class="carousel">
                     <a class="carousel-item" href="#one!"><img class="carousel-image" src="content/images/book3.JPG" alt="Illustration" title="Illustration"></a>
@@ -29,15 +29,15 @@
             </div>
             <div class="col l4 offset-l2 s12">
 
-                <h5 class="white-text">Plus d'infos</h5>
+                <h5 class="white-text" id="footer-t2">Plus d'infos</h5>
 
                 <ul class="footer-text1">
-                    <br>
-                    <li><a class="grey-text text-lighten-4" href="#!">Réalisation</a></li>
-                    <li><a class="grey-text text-lighten-4" href="#!">Jean-Eudes Nouaille-Degorce</a></li>
-                    <br>
-                    <li><a class="grey-text text-lighten-3" href="#!">GitHub</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Portfolio</a></li>
+                    
+                    <li><a class="grey-text text-lighten-4" href="https://github.com/JEND-CODES" target="_blank">Réalisation</a></li>
+                    <li><a class="grey-text text-lighten-4" href="https://github.com/JEND-CODES" target="_blank">Jean-Eudes Nouaille-Degorce</a></li>
+                    <li>&nbsp;</li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/JEND-CODES" target="_blank">GitHub</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/JEND-CODES" target="_blank">Portfolio</a></li>
                 </ul>
             </div>
         </div>
