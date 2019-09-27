@@ -1,22 +1,38 @@
 <?php
-session_start();
 
-if(empty($_SESSION['connect']))
-    header('Location:'.URL.'login');
+// POO class -> Gestion des commentaires en Back Office
 
-$repositoryComment = new RepositoryComment($bdd);
-
-if(!empty($_POST['delete']))
+class ControllerCommentaires
 {
-    extract($_POST);
+    private $back_comment;
     
-    $repositoryComment->deleteComment($act);
+    public function __construct()
+    {
+        $this->back_comment = new RepositoryComment();
+    }
+    
+    public function Commentaires()
+    {
+      
+        session_start();
+        
+        if(empty($_SESSION['connect']))
+            header('Location:'.URL.'login');
 
-    $drop = 'Commentaire supprimé';     
+        if(!empty($_POST['delete']))
+        {
+            extract($_POST);
+
+            $this->back_comment->deleteComment($act);
+
+            $drop = 'Commentaire supprimé';     
+        }
+
+        $alarmComments = $this->back_comment->selectAlarmComments();
+
+        $alarmComments2 = $this->back_comment->selectAlarmCommentsDesc();
+
+        require_once('views/viewCommentaires.php');
+      
+    }
 }
-
-$alarmComments = $repositoryComment->selectAlarmComments();
-
-$alarmComments2 = $repositoryComment->selectAlarmComments2();
-
-require_once('views/viewCommentaires.php');
