@@ -1,20 +1,15 @@
 <?php
-class RepositoryMessage
+
+class RepositoryMessage extends Database
 {
-    private $_bdd;
-    
-    public function __construct($bdd)
-    {
-        $this->setBdd($bdd);
-    }
     
     public function selectMessages()
     {  
         $messages = array();
         
-        $req = $this->_bdd->query('SELECT id, email, infoname, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS messageDate FROM messages ORDER BY id DESC');
+        $req = $this->connectDB()->query('SELECT id, email, infoname, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS messageDate FROM messages ORDER BY id DESC');
         $req->execute();
-        while($data = $req->fetch(PDO::FETCH_ASSOC))
+        while($data = $req->fetch())
         {
             $messages[] = new Message($data);
         }
@@ -24,12 +19,12 @@ class RepositoryMessage
   
     public function selectMessage($id)
     {
-        $req = $this->_bdd->prepare('SELECT id, email, infoname, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS messageDate FROM messages WHERE id = ?');
+        $req = $this->connectDB()->prepare('SELECT * FROM messages WHERE id = ?');
         $req->execute(array($id));
         
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             return new Message($data);   
         }
         
@@ -38,14 +33,14 @@ class RepositoryMessage
     
     public function insertMessage($plus)
     {
-        $req = $this->_bdd->prepare('INSERT INTO messages (email, infoname, content, date) VALUES(?, ?, ?, NOW())');
+        $req = $this->connectDB()->prepare('INSERT INTO messages (email, infoname, content, date) VALUES(?, ?, ?, NOW())');
         $req->execute(array($plus->email(), $plus->infoname(), $plus->content()));
         $req->closeCursor();    
     }
    
     public function deleteMessage($modif)
     {
-        $req = $this->_bdd->prepare('DELETE FROM messages WHERE id = ?');
+        $req = $this->connectDB()->prepare('DELETE FROM messages WHERE id = ?');
         $req->execute(array($modif));
         $req->closeCursor();    
     }
@@ -61,10 +56,6 @@ class RepositoryMessage
 
 //En théorie, quand on exécute une requête (via query() ou execute()), puis qu'on récupère les données trouvées dans la base avec une série de fetch(), il convient de faire un closeCursor() avant de faire une autre exécution de requête (via query() ou execute())
 
-    public function setBdd(PDO $bdd)
-    {
-        $this->_bdd = $bdd;
-    }
+    
 }
 
-?>
