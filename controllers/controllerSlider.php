@@ -1,44 +1,60 @@
 <?php
-session_start();
 
-if(empty($_SESSION['connect']))
-    header('Location:'.URL.'login');
+// POO class -> Edition du Slideshow en Back Office
 
-$repositoryBackground = new RepositoryBackground($bdd);
-
-$backgrounds = $repositoryBackground->selectBackgrounds();
-
-if(!empty($_POST))
+class ControllerSlider
 {
-    extract($_POST);
-    $errors = array();
+    private $slides;
     
-    if(empty($title))
-        array_push($errors, "Il manque votre message");
- 
-    if(empty($content))
-        array_push($errors, "Entrez l'URL de l'image");
-
-
-    if(count($errors) == 0)
-    { 
-        $ajouter = new Background(array('title'=>$title, 'content'=>$content));
+    public function __construct(){
         
-        $repositoryBackground->insertBackground($ajouter);
+        $this->slides = new RepositoryBackground();
+    }
+    
+    public function Slider()
+    {
+   
+        session_start();
         
-        header("Refresh:0");
+        if(empty($_SESSION['connect']))
+            header('Location:'.URL.'login');
 
+        $backgrounds = $this->slides->selectBackgrounds();
+
+        if(!empty($_POST))
+        {
+            extract($_POST);
+            $errors = array();
+
+            if(empty($title))
+                array_push($errors, "Il manque votre message");
+
+            if(empty($content))
+                array_push($errors, "Entrez l'URL de l'image");
+
+            if(count($errors) == 0)
+            { 
+                $ajouter = new Background(array('title'=>$title, 'content'=>$content));
+
+                $this->slides->insertBackground($ajouter);
+
+                header("Refresh:0");
+
+            }
+        }
+
+        if(!empty($_POST['trash2']))
+        {
+            extract($_POST);    
+
+            $this->slides->deleteBackground($retirer);
+
+            header("Refresh:0");
+
+        }
+
+        require_once('views/viewSlider.php');
+        
+                
     }
 }
-
-if(!empty($_POST['trash2']))
-{
-    extract($_POST);    
-    
-    $repositoryBackground->deleteBackground($retirer);
-
-    header("Refresh:0");
-    
-}
-
-require_once('views/viewSlider.php');
