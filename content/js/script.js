@@ -15,6 +15,11 @@ $(document).ready(function () {
     //To hide comments on chapters
     $( "#ghost2" ).hide();
     $( "#ghost3" ).hide();
+    
+    //To hide chapter part 2
+    $( "#chapter-part2" ).hide();
+    $( "#chapter-part3" ).hide();
+    
    
 });
 
@@ -31,6 +36,51 @@ $( "#ghost" ).click(function() {
     $( "#ghost4" ).toggle(function() {
     // Change message button
   });
+});
+
+// Réglage de l'affichage de la première partie du chapitre
+
+$( "#bookmark1" ).click(function() {
+    
+    $( "#chapter-part1" ).show();
+    // Show chapter part 1
+ 
+    $( "#chapter-part2" ).hide();
+    // hide chapter part 2
+ 
+    $( "#chapter-part3" ).hide();
+    // hide chapter part 3
+  
+});
+
+// Réglage de l'affichage de la deuxième partie du chapitre
+
+$( "#bookmark2" ).click(function() {
+    
+    $( "#chapter-part2" ).show();
+    // Show chapter part 2
+ 
+    $( "#chapter-part1" ).hide();
+    // hide chapter part 1
+  
+    $( "#chapter-part3" ).hide();
+    // hide chapter part 3
+
+});
+
+// Réglage de l'affichage de la troisième partie du chapitre
+
+$( "#bookmark3" ).click(function() {
+    
+    $( "#chapter-part3" ).show();
+    // Show chapter part 3
+ 
+    $( "#chapter-part1" ).hide();
+    // hide chapter part 1
+ 
+    $( "#chapter-part2" ).hide();
+    // hide chapter part 2
+
 });
 
 $(window).scroll(function() {
