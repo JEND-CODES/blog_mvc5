@@ -9,7 +9,7 @@ $nav_title = "Back Office";
 <div class="center-menu">
 
     <!-- Dropdown Trigger Materialize-->
-    <a class='dropdown-trigger btn' href='#' data-target='dropdown1' id="title-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a class='dropdown-trigger btn' href='#' data-target='dropdown1' id="title-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
     <!-- Dropdown Structure -->
     <ul id='dropdown1' class='dropdown-content'>
@@ -48,7 +48,7 @@ $nav_title = "Back Office";
 
 <div class="centered">
 
-    <h4>Dernières publications</h4>
+    <h5>Dernières publications</h5>
 
     <?php 
             
@@ -135,7 +135,7 @@ foreach($chapters as $chapter): ?>
 
 <div class="centered" id="letters">
 
-    <h4 id="messagerie" class="section scrollspy">Messages</h4>
+    <h5 id="messagerie" class="section scrollspy">Messages</h5>
  
 </div>
 
@@ -203,7 +203,7 @@ foreach($messages as $message): ?>
 
 <div class="centered">
 
-    <h4>Infos</h4>
+    <h5>Infos</h5>
 
 </div>
 
@@ -219,7 +219,7 @@ foreach($messages as $message): ?>
                     <br>
 
                     <a href="commentaires">
-                        <p>Nombre de commentaires&#8239;:&#8239;<?= $alarmComments3 ?></p>
+                        <p>Nombre de commentaires&#8239;:&#8239;<?= $totalComments ?></p>
                     </a>
 
                     <a href="commentaires">
