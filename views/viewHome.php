@@ -36,7 +36,7 @@
     <div class="row">
 
         <?php
-        foreach($chapters1 as $chapter): ?>
+        foreach($chapters as $chapter): ?>
 
         <div class="col s12 l12">
             <div class="card">
@@ -45,8 +45,8 @@
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>">
                         <p class="post-title">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
                     </a>
-
-                    <h5 class="post-content"><?= $chapter->content() ?>...</h5>
+                    
+                    <h5 class="post-content"><?= substr($chapter->content(), 0, 380) ?>...</h5>
 
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
