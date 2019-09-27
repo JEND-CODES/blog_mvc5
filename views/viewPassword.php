@@ -16,7 +16,7 @@ $nav_title = "Modifier le mot de passe";
 
     <div class="centered">
 
-        <h4>Nouveau mot de passe</h4>
+        <h5>Nouveau mot de passe</h5>
 
     </div>
 
