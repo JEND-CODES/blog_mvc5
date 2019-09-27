@@ -1,13 +1,7 @@
 <?php
-class RepositoryConnect
+
+class RepositoryConnect extends Database
 {
-    private $_bdd;
-    
-    // CONSTRUCTEUR
-    public function __construct($bdd)
-    {
-        $this->setBdd($bdd);
-    }
     
     //Sécuriser les données avec le hashage - cf. https://openclassrooms.com/fr/courses/2091901-protegez-vous-efficacement-contre-les-failles-web/2873202-protegez-les-donnees //https://sql.sh/fonctions/sha1
     
@@ -21,7 +15,7 @@ class RepositoryConnect
     // Fonction utilisée aussi pour afficher le nom de l'utilisateur en cours
     public function selectUser($user)
     {        
-        $req = $this->_bdd->prepare('SELECT id, user, password FROM managers WHERE user= ?');
+        $req = $this->connectDB()->prepare('SELECT id, user, password FROM managers WHERE user= ?');
         $req->execute(array($user));
          //https://www.php.net/manual/fr/pdostatement.rowcount.php
         // La méthode "rowCount() == 1" vérifie la correspondance à l'ID demandé (Idem pour ID d'un chapitre)
@@ -29,9 +23,9 @@ class RepositoryConnect
         
         if($req->rowCount() == 1)
         {
-            $data = $req->fetch(PDO::FETCH_ASSOC);
+            $data = $req->fetch();
             //PDOStatement::fetch = Récupère une ligne depuis un jeu de résultats
-            //PDO::FETCH_ASSOC: retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats
+            //cf.Database.php -> PDO::FETCH_ASSOC: retourne un tableau indexé par le nom de la colonne comme retourné dans le jeu de résultats
             return new Connect($data);   
         }
         $req->closeCursor();        
@@ -39,7 +33,7 @@ class RepositoryConnect
    
     public function checkUser($user, $password)
     {        
-        $req = $this->_bdd->prepare('SELECT id FROM managers WHERE user= ? AND password = ?');
+        $req = $this->connectDB()->prepare('SELECT id FROM managers WHERE user= ? AND password = ?');
         $req->execute(array($user, sha1($password)));
         if($req->rowCount() == 1)
         {
@@ -51,13 +45,10 @@ class RepositoryConnect
     // Mise à jour du mot de passe en fonction de l'utilisateur en cours
     public function updatePassword($connect)
     {
-        $req = $this->_bdd->prepare('UPDATE managers SET password = ? WHERE user = ?');
+        $req = $this->connectDB()->prepare('UPDATE managers SET password = ? WHERE user = ?');
         $req->execute(array($connect->password(), $connect->user()));
         $req->closeCursor(); 
     }
     
-    public function setBdd(PDO $bdd)
-    {
-        $this->_bdd = $bdd;
-    }
+    
 }
