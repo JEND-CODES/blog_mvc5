@@ -1,7 +1,23 @@
 <?php
 
-$repositoryChapter = new RepositoryChapter($bdd);
+// POO class -> Affichage du sommaire du livre
 
-$chapters2 = $repositoryChapter->selectChapters2();
+class ControllerSommaire
+{
+    private $book;
+    
+    public function __construct(){
+        
+        $this->book = new RepositoryChapter();
+    }
+    
+    public function Sommaire()
+    {
+        
+        $chapters2 = $this->book->selectChaptersAsc();
 
-require_once('views/viewSommaire.php');
+        require_once('views/viewSommaire.php');
+        
+    }
+}
+
