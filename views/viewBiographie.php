@@ -31,7 +31,7 @@ $nav_title = "Biographie de Jean Forteroche";
 
                         <span class="card-title activator grey-text text-darken-4">
 
-                            <p class="activator">Grand voyageur, Jean Forteroche est la preuve que le polar n'a pas de limite géographique. Il y a deux ans, après un séjour à Stockholm, il publiait Onitsha et nous emmenait en motoneige en pleine toundra, au cœur du pays Sami...</p>
+                            <p class="activator">Grand voyageur, Jean Forteroche est la preuve que le polar n'a pas de limite géographique. Il y a deux ans, après un séjour à Stockholm, il publiait Onitsha et nous emmenait en motoneige en pleine toundra, au coeur du pays Sami...</p>
 
                             <i class="material-icons right">more_vert</i>
 
@@ -56,6 +56,5 @@ $nav_title = "Biographie de Jean Forteroche";
         </div>
 
 </section>
-
 
 <?php require_once('views/footer.php'); ?>
