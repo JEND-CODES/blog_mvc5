@@ -1,44 +1,61 @@
 <?php
-session_start();
 
-if(empty($_SESSION['connect']))
-    header('Location:'.URL.'login');
+// POO class -> Edition d'un nouveau chapitre en Back Office
 
-$repositoryChapter = new RepositoryChapter($bdd);
-
-if(!empty($_POST))
+class ControllerEdit
 {
-    extract($_POST);
-    $errors = array();
+    private $new_chapter;
     
-    $title = htmlentities($title);
-    
-    $chapi = htmlentities($chapi);
-    
-    $zerolink = htmlentities($zerolink);
-    
-    if(empty($title))
-        array_push($errors, 'Titre manquant');
-    
-    if(empty($chapi))
-        array_push($errors, 'Précisez le numéro du chapitre');
-
-    if(empty($content))
-        array_push($errors, 'Contenu manquant');
-    
-    if(count($errors) == 0)
-    { 
-        $edit = new Chapter(array('title'=>$title, 'content'=>$content,'chapi'=>$chapi,'zerolink'=>$zerolink));
+    public function __construct()
+    {
         
-        $repositoryChapter->insertChapter($edit);
+        $this->new_chapter = new RepositoryChapter();
+    }
+    
+    public function Edit()
+    {
 
-        $increase = 'Chapitre publié';
+        session_start();
+        
+        if(empty($_SESSION['connect']))
+            header('Location:'.URL.'login');
 
-        unset($title);
-        unset($chapi);
-        unset($content);
-        unset($zerolink);
+        if(!empty($_POST))
+        {
+            extract($_POST);
+            $errors = array();
+
+            $title = htmlentities($title);
+
+            $chapi = htmlentities($chapi);
+
+            $zerolink = htmlentities($zerolink);
+
+            if(empty($title))
+                array_push($errors, 'Titre manquant');
+
+            if(empty($chapi))
+                array_push($errors, 'Précisez le numéro du chapitre');
+
+            if(empty($content))
+                array_push($errors, 'Contenu manquant');
+
+            if(count($errors) == 0)
+            { 
+                $edit = new Chapter(array('title'=>$title, 'content'=>$content,'chapi'=>$chapi,'zerolink'=>$zerolink));
+
+                $this->new_chapter->insertChapter($edit);
+
+                $increase = 'Chapitre publié';
+
+                unset($title);
+                unset($chapi);
+                unset($content);
+                unset($zerolink);
+            }
+        }
+
+        require_once('views/viewEdit.php');
+
     }
 }
-
-require_once('views/viewEdit.php');
