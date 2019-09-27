@@ -11,7 +11,7 @@ $nav_title = "Connexion";
 
     <div class="row" id="form-comment">
 
-        <h4>Connexion</h4>
+        <h5>Connexion</h5>
 
         <form action="login" method="post">
 
