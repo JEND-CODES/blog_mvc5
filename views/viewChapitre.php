@@ -75,35 +75,71 @@ $nav_title = $chapter->title();
     <?php endif; ?>
     
 </div>
+            <?php
 
-        <h5 class="post-content" id="chapter-part1">
+        /*
+        
+            <h5 class="post-content" id="chapter-part1">
+            <?= 
+            // Starting point : 0
+            // Showing 3500
+            
+            // La méthode strpos permet de ne pas couper le dernier mot avant transition vers l'onglet partie 2 du chapitre :
+            
+            // Cette méthode fonctionne bien pour régler le découpage du texte à la fin de la première partie, mais ne marche pas pour les autres onglets -> (solutions ? Cf. https://stackoverflow.com/questions/1652406/php-pagination-script / ou créer une fonction wordwrap()?)
+    
+            substr($chapter->content(), 0, strpos($chapter->content(), ' ', 3500)); ?>
+            </h5>
+            
+        */
+
+            ?>
+
+            <h5 class="post-content" id="chapter-part1">
             <?= 
             // Starting point : 0
             // Showing 3500
             substr($chapter->content(), 0, 3500); ?>
+            <?php 
+            // Affichage du trait d'union uniquement si la taille du texte est supérieure à 3500 caractères
+            if(strlen($chapter->content()) > 3500){ 
+            ?>
+                
+            -
+
+            <?php } ?>
             </h5>
+
 
     <?php 
     // Affichage onglet partie 2 du chapitre
     if(strlen($chapter->content()) >= 3500): ?>
 
-
-            <h5 id="chapter-part2">
-                <?= 
+            <h5 id="chapter-part2"> -
+            <?= 
             // Starting point : 3500
             // Showing more 3500
             substr($chapter->content(), 3500, 3500); ?>
+        
+            <?php 
+            // Affichage du trait d'union uniquement si la taille du texte est supérieure à 7000 caractères
+            if(strlen($chapter->content()) > 7000){ 
+            ?>
+                
+            -
+
+            <?php } ?>
             </h5>
 
+            <?php endif; ?>
 
-    <?php endif; ?>
 
     <?php 
     // Affichage onglet partie 3 du chapitre
     if(strlen($chapter->content()) >= 7000): ?>
 
 
-            <h5 id="chapter-part3">
+            <h5 id="chapter-part3"> -
                 <?= 
                 // Starting point : 7000
                 // Showing all after this point..
