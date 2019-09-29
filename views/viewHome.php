@@ -47,6 +47,16 @@
                     </a>
                     
                     <h5 class="post-content"><?= substr($chapter->content(), 0, 380) ?>...</h5>
+                    
+                    <h5 class="element">           
+                    <?php
+
+                    require_once('tags.php');
+              
+                    echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$deco, $span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '),$decode)));
+          
+                    ?>
+                    ...</h5>
 
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
