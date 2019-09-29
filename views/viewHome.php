@@ -46,17 +46,73 @@
                         <p class="post-title">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
                     </a>
                     
-                    <h5 class="post-content"><?= substr($chapter->content(), 0, 380) ?>...</h5>
+                    <!-- Problème injections erreurs HTML -> utiliser un encodage ? -->
+                    <?php
+                /*
+                    <h5 class="post-content"><?= htmlentities(substr($chapter->content(), 0, 100)) ?>...</h5>
+                */
+                    ?>
                     
-                    <h5 class="element">           
+               
                     <?php
 
-                    require_once('tags.php');
-              
-                    echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$deco, $span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '),$decode)));
-          
+                    // Search -> php delete all between strings
+
+                    // Version 1 -> Test -> Deleting text between two strings in php using preg_replace (/starting point[\s\S]+?ending point/) :     
+                /*   
+                    echo '<hr>';
+
+                    echo preg_replace('/Test[\s\S]+?chapitre/', '', htmlentities(substr($chapter->content(), 0, 300)));
+
+                    echo '<hr>';
+                */            
                     ?>
-                    ...</h5>
+                 
+            <h5 class="element">           
+            <?php
+
+            // Cf. Solution test méthode str_replace : https://stackoverflow.com/questions/45182891/how-to-replace-htmlentities-using-html-tags-using-php-str-replace   
+
+            // Utilisation fonctionnelle du remplacement des balises html et des caractères spéciaux
+
+            // Version 2 : Association des méthodes preg_replace, str_replace, substr, et htmlentities
+
+            /*    
+                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->content(), 0, 3000));
+
+                echo htmlentities(str_replace(array($br, $div,$div2,$em,$em2,$p,$p2,$img,$img2),array(' '),$test));
+            */                
+
+
+            /*                
+                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->content(), 0, 3000));
+            */
+
+
+            // Version 3 : Ajout d'éléments à effacer.. et utilisation de la méthode preg_quote() :
+
+            /*
+                // Pour repérage balise de fin d'un tag html d'image (à améliorer !) :
+                
+                $imageTagAuto = 'auto"';  (suppose que l'on indique un format height="auto" dans TinyMCE ?)
+                
+                $decode = preg_replace('/'.preg_quote('<img').'[\s\S]+?'.preg_quote(''.$imageTagAuto.'').'/', ' ', substr($chapter->content(), 0, 3000));
+
+                echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' '),$decode)));
+            */  
+
+            // Version 4 : 
+    
+            require_once('content/tags.php');
+
+            $decode = substr($chapter->content(), 0, 3000);
+
+            echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' '),$decode)));
+
+            // Voir le fichier script.js pour d'autres remplacements (méthode jQuery) de chaînes de caractères.. 
+
+            ?>
+            ...</h5>
 
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
@@ -71,7 +127,6 @@
 
     </div>
 </div>
-
 
 <section id="contact-me" class="section scrollspy">
 
