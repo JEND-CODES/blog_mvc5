@@ -101,5 +101,38 @@ $('#return-to-top').click(function() {
         // Scroll to top of body
     }, 500);
 });
- 
+
+// jQuery Method to replace Strings
+// Cf. demo 1 : http://jsfiddle.net/ZSXb6/
+
+// Cf. demo 2 : https://stackoverflow.com/questions/10689784/replace-remove-everything-between-two-characters
+
+// 1. Remplacement de toutes les balises "<span style" avec la méthode .replace(/MOT1.*MOT2/, 'REMPLACEMENT')
+
+// 2. Remplacement de toutes les balises "<a href"
+
+// 3. Remplacement de toutes les balises "<img src"
+
+// Explication -> Du MOT1 jusqu'à la fin du MOT2 tous les caractères sont remplacés par REMPLACEMENT (nouveau mot ou rien ' ', si on veut !)
+/*
+$('.element').each(function() {
+    
+    var text = $(this).text().replace(/<span style.*;">/, 'REMPLACEMENT SPAN STYLE ').replace(/<a href=.*">/, 'REMPLACEMENT A HREF ').replace(/<img src=.*>/, 'REMPLACEMENT IMG SRC ');
+    $(this).text(text);
+});
+*/
+
+// Ajout du Regex /g (to replace all occurrences of a word) :
+
+// Problème de reconnaissance de caractères sépciaux ?voir cours sur le REGEX ! https://openclassrooms.com/fr/courses/146276-tout-sur-le-javascript/145569-lobjet-regexp
+
+$('.element').each(function() {
+    /*
+    var text = $(this).text().replace(/<span style.*;">/g, 'REMPLACEMENT SPAN STYLE PARTOUT ').replace(/<img style=.*>/g, 'REMPLACEMENT IMG STYLE PARTOUT ').replace(/<img src=.*>/g, 'REMPLACEMENT IMG SRC PARTOUT ').replace(/<a href=.*>/g, 'REMPLACEMENT A HREF PARTOUT ');
+    */
+    var text = $(this).text().replace(/\<span style=.*\;">/g, 'REMPLACEMENT SPAN STYLE PARTOUT ').replace(/src.*\/>/g, 'REMPLACEMENT IMG PARTOUT').replace(/<a href.*"\>/g, 'REMPLACEMENT A HREF PARTOUT');
+    $(this).text(text);
+    
+});
+
 
