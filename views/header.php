@@ -33,6 +33,7 @@
     <!-- TinyMCE init function -->
     <script>
         tinymce.init({
+            
             selector: 'textarea.tinymce',
             language: 'fr_FR',
             height: 700,
@@ -40,18 +41,20 @@
                 'image link code media emoticons',
             ],
             branding: false,
-            force_br_newlines: true,
-            force_p_newlines: false,
-            forced_root_block: '',
+            
+            // Réglage en p_newlines pour améliorer le décodage htmlentities ajouté dans viewHome (retrait du force_root_block = '')
+            force_br_newlines: false,
+            force_p_newlines: true,
+            
             toolbar: 'undo redo | bold italic underline | link | image | code | media | forecolor backcolor | emoticons',
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tiny.cloud/css/codepen.min.css'
             ]
         });
-
+     
     </script>
-
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
 
     <!-- Compiled and minified CSS -->
