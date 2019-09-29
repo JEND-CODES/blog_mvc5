@@ -14,4 +14,8 @@ Avancées principales :
 -> Nouveaux réglages substr() pour viewHome et viewChapitre
 -> Nouveaux transferts FTP
 -> Ajout d'une pagination sur la page Chapitre
--> Nouvelles animations jQuery
+-> Pagination évolutive selon la longueur des chapitres
+-> Nouvelles animations jQuery liées à la pagination
+-> Nouvelle méthode de décodage de balises HTML dans viewHome
+-> Ajouts de fonctionnalités str_replace dans viewHome 
+-> Ajouts de fonctionnalités .replace() dans script.js 
