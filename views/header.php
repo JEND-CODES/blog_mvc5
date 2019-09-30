@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<?= URL.'content/style.css' ?>" />
 
     <!-- Police du site -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap" rel="stylesheet">
     
     <!-- Police du Slideshow -->
     <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
@@ -33,7 +33,24 @@
     <!-- TinyMCE init function -->
     <script>
         tinymce.init({
+            /*
+            // Cf. https://stackoverflow.com/questions/31965807/tinymce-customizing-new-lines
             
+            // Tests du 27-30 septembre : changements du format des balises par défaut de l'éditeur TinyMCE pour décodage htmlentities ajouté dans viewHome : 
+            
+            setup: function(editor) {
+            editor.on('PostProcess', function(ed) {
+                ed.content = ed.content.replace(/(<span>)/gi,'<span><p>').replace(/(<\/span>)/gi,'<\/span><\/p><p>').replace(/<img.*?src="(.*?)"[^\>]+>/gi,'<\/p><img.*?src="(.*?)"[^\>]+><p>');
+            });
+        },
+            */
+            /*
+            setup: function(editor) {
+            editor.on('PostProcess', function(ed) {
+            ed.content = ed.content.replace(/(<p>)/gi,'<p><span>').replace(/(<\/p>)/gi,'<\/span><\/p>');
+            });
+        },
+            */
             selector: 'textarea.tinymce',
             language: 'fr_FR',
             height: 700,
@@ -42,9 +59,13 @@
             ],
             branding: false,
             
-            // Réglage en p_newlines pour améliorer le décodage htmlentities ajouté dans viewHome (retrait du force_root_block = '')
-            force_br_newlines: false,
-            force_p_newlines: true,
+            // Tests du 27-30 sept : Réglage en forced_p_newlines:'true' pour améliorer (?) le décodage htmlentities ajouté dans viewHome (retrait du force_root_block = '')
+            
+            // Test sans insertions de balises <p> (il n'y aura donc que des <span> et des <br>): 
+            force_br_newlines: true,
+            force_p_newlines: false,
+            
+            forced_root_block: '',
             
             toolbar: 'undo redo | bold italic underline | link | image | code | media | forecolor backcolor | emoticons',
             content_css: [
