@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
 
@@ -61,7 +61,7 @@ p {
 }
 
 .signature {
-    position:absolute;
+    position: absolute;
     color: black !important;
     font-size: 16px !important;
     margin-top: 10px;
@@ -165,7 +165,7 @@ p {
 
 .button-parts {
     text-align: center;
-    padding:20px;
+    padding: 20px;
 }
 
 #bookmark1 {
@@ -185,20 +185,20 @@ p {
 
 #chapter-part1 {
     font-size: 22px !important;
-    margin-left:7.5%;
-    margin-right:7.5%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
 }
 
 #chapter-part2 {
     font-size: 22px !important;
-    margin-left:7.5%;
-    margin-right:7.5%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
 }
 
 #chapter-part3 {
     font-size: 22px !important;
-    margin-left:7.5%;
-    margin-right:7.5%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
 }
 
 #chapter-title {
@@ -242,6 +242,14 @@ p {
 
 .post-content {
     font-size: 22px !important;
+}
+
+/*Réglage de la taille max des images présentes dans les contenus des chapitres*/
+
+.post-content img {
+    width: 30% !important;
+    height: auto !important;
+    max-width: 100% !important;
 }
 
 input[type=text] {
@@ -637,6 +645,33 @@ a {
 #footer-t2 {
     font-size: 22px !important;
 }
+
+@media all and (max-width:992px) {
+    #football {
+        text-align: center !important;
+    }
+}
+
+/*
+// Essais suite problèmes Erreurs HTML sur viewHome
+
+#football {
+    margin: auto !important;
+    text-align: center !important;
+    border:10px solid black;
+    position:absolute;
+    width:100%;
+    left:0 !important;
+
+}
+*/
+/*
+#myfooter {
+    width:141% !important;
+    margin-left:-21% !important;
+    
+}
+*/
 
 /*Scroll on top button*/
 
