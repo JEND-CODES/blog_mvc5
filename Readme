@@ -19,3 +19,4 @@ Avancées principales :
 -> Nouvelle méthode de décodage de balises HTML dans viewHome
 -> Ajouts de fonctionnalités str_replace dans viewHome 
 -> Ajouts de fonctionnalités .replace() dans script.js 
+-> Nouveaux réglages des balises TinyMCE
