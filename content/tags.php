@@ -2,8 +2,11 @@
 
     // Variables correspondantes aux balises HTML et aux caractères spéciaux pour leurs décodages dans viewHome :
 
-    // -> Voir le fichier script.js pour d'autres remplacements de chaînes de caractères -> méthode .replace() jQuery.. 
+    // -> Voir le fichier script.js pour d'autres remplacements de chaînes de caractères -> méthode .replace() jQuery..
 
+    // -> 30 septembre : toutes ces fonctionnalités de décodage PHP sur viewHome ne sont plus activées (car le problème d'erreurs HTML a été réglé en modifiant tinymce.init -> en supprimant l'édition avec l'ajout auto de balises <p>)
+
+/*
         $sym0 = '&euml;';
         $sym1 = '&amp;';
         $sym2 = '&iuml;';
@@ -29,3 +32,4 @@
         $stg2 = '</strong>';
         $span = '<span>';
         $span2 = '</span>';
+*/
