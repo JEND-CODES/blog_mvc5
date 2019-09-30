@@ -45,18 +45,12 @@
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>">
                         <p class="post-title">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
                     </a>
-                    
-                    <!-- Problème injections erreurs HTML -> utiliser un encodage ? -->
-                    <?php
-                /*
-                    <h5 class="post-content"><?= htmlentities(substr($chapter->content(), 0, 100)) ?>...</h5>
-                */
-                    ?>
-                    
-               
+
+                    <p class="post-content"><?= substr($chapter->content(), 0, 500) ?>...</p>
+
                     <?php
 
-                    // Search -> php delete all between strings
+                    // Problèmes Erreurs Html injectées par le format des balises de l'éditeur TinyMCE -> Search -> php delete all between strings..
 
                     // Version 1 -> Test -> Deleting text between two strings in php using preg_replace (/starting point[\s\S]+?ending point/) :     
                 /*   
@@ -67,8 +61,11 @@
                     echo '<hr>';
                 */            
                     ?>
-                 
-            <h5 class="element">           
+            <?php
+        /*     
+            <h5 class="element"> 
+        */
+            ?>
             <?php
 
             // Cf. Solution test méthode str_replace : https://stackoverflow.com/questions/45182891/how-to-replace-htmlentities-using-html-tags-using-php-str-replace   
@@ -83,11 +80,9 @@
                 echo htmlentities(str_replace(array($br, $div,$div2,$em,$em2,$p,$p2,$img,$img2),array(' '),$test));
             */                
 
-
             /*                
                 $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->content(), 0, 3000));
             */
-
 
             // Version 3 : Ajout d'éléments à effacer.. et utilisation de la méthode preg_quote() :
 
@@ -102,7 +97,7 @@
             */  
 
             // Version 4 : 
-    
+        /*
             require_once('content/tags.php');
 
             $decode = substr($chapter->content(), 0, 3000);
@@ -110,10 +105,13 @@
             echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' '),$decode)));
 
             // Voir le fichier script.js pour d'autres remplacements (méthode jQuery) de chaînes de caractères.. 
-
+        */
             ?>
+                <?php
+        /*
             ...</h5>
-
+        */
+                ?>
                     <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
                     <br>
