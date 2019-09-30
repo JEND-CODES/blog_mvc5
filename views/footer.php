@@ -12,7 +12,10 @@
 </div>
 
 <br><br>
-<footer class="page-footer cyan darken-3">
+
+<section id="football">
+    
+<footer class="page-footer cyan darken-3" id="myfooter">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -48,6 +51,8 @@
         </div>
     </div>
 </footer>
+    
+</section>
 
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
