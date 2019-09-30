@@ -125,14 +125,24 @@ $('.element').each(function() {
 // Ajout du Regex /g (to replace all occurrences of a word) :
 
 // Problème de reconnaissance de caractères sépciaux ?voir cours sur le REGEX ! https://openclassrooms.com/fr/courses/146276-tout-sur-le-javascript/145569-lobjet-regexp
-
+/*
 $('.element').each(function() {
+*/
     /*
     var text = $(this).text().replace(/<span style.*;">/g, 'REMPLACEMENT SPAN STYLE PARTOUT ').replace(/<img style=.*>/g, 'REMPLACEMENT IMG STYLE PARTOUT ').replace(/<img src=.*>/g, 'REMPLACEMENT IMG SRC PARTOUT ').replace(/<a href=.*>/g, 'REMPLACEMENT A HREF PARTOUT ');
     */
-    var text = $(this).text().replace(/\<span style=.*\;">/g, 'REMPLACEMENT SPAN STYLE PARTOUT ').replace(/src.*\/>/g, 'REMPLACEMENT IMG PARTOUT').replace(/<a href.*"\>/g, 'REMPLACEMENT A HREF PARTOUT');
-    $(this).text(text);
     
+    /*
+    var text = $(this).text().replace(/\<span style=.*\;">/g, 'REMPLACEMENT SPAN STYLE PARTOUT ').replace(/<img src.*\/>/g, 'REMPLACEMENT IMG SRC PARTOUT ').replace(/<img style.*\/>/g, 'REMPLACEMENT IMG STYLE PARTOUT ').replace(/<a href.*"\>/g, 'REMPLACEMENT A HREF PARTOUT ').replace(/<p style.*"\>/g, 'REMPLACEMENT P STYLE PARTOUT');
+    $(this).text(text);
+    */
+    /*
+    // Version sans textes :
+    var text = $(this).text().replace(/\<span style=.*\;">/g, ' ').replace(/<img src.*\/>/g, ' ').replace(/<img style.*\/>/g, ' ').replace(/<a href.*"\>/g, ' ').replace(/<p style.*"\>/g, '');
+    $(this).text(text);
+    */
+  /*  
 });
+*/
 
-
+// -> 30 septembre : toutes ces fonctionnalités jQuery de décodage sur viewHome ne sont plus activées (car le problème d'erreurs HTML a été réglé en modifiant tinymce.init)
