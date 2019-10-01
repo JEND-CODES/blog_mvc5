@@ -1,9 +1,13 @@
 <?php 
-$nav_title = $chapter->title(); 
+$nav_title = $chapter->getTitle(); 
 //permet de définir le titre du chapitre comme titre de l'onglet du navigateur
 ?>
 
 <?php require_once('views/header.php'); ?>
+
+<?php 
+// Appel pour changements du format des dates ($month_1, $month_2)
+require_once('content/dates.php'); ?>
 
 </header>
 
@@ -39,14 +43,28 @@ $nav_title = $chapter->title();
 
         <div id="chapter-title">
 
-            <p id="chapter-title2">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
+            <p id="chapter-title2">Chapitre <?= $chapter->getChapi() ?> : <?= $chapter->getTitle() ?></p>
 
         </div>
 
     </div>
 </div>
 
-<p class="signature">publié le <?= $chapter->chapterDate() ?></p>
+<p class="signature">publié le 
+
+    <?php
+    // Transformer date_format : Cf. https://www.php.net/manual/fr/datetime.format.php
+    // Solution avec strtotime() -> Cf. https://tecadmin.net/convert-date-format-in-php/
+
+    $sql_Date_1 = $chapter->getChapterDate();
+
+    $new_Date_Format_1 = date("d .m Y", strtotime($sql_Date_1));
+
+    echo str_replace($month_1,$month_2,$new_Date_Format_1);
+
+    ?>
+    
+</p>
 
 <br>
 
@@ -56,7 +74,7 @@ $nav_title = $chapter->title();
     // Si la longueur du chapitre dépasse 3500 caractères.. On montre les boutons des parties 1 et 2 du chapitre :
     
     // Interactive bookmarks chapter parts 1 and 2 
-    if(strlen($chapter->content()) > 3500): ?>
+    if(strlen($chapter->getContent()) > 3500): ?>
 
         <button class="btn waves-effect waves-light" id="bookmark1"><i class="far fa-bookmark"></i> 1 </button>
 
@@ -68,7 +86,7 @@ $nav_title = $chapter->title();
     // Si la longueur du chapitre dépasse 7000 caractères.. On montre le bouton de la partie 3 du chapitre :    
 
     // Interactive bookmark chapter part 3
-    if(strlen($chapter->content()) > 7000): ?>
+    if(strlen($chapter->getContent()) > 7000): ?>
 
         <button class="btn waves-effect waves-light" id="bookmark3"><i class="far fa-bookmark"></i> 3 </button>
 
@@ -88,21 +106,21 @@ $nav_title = $chapter->title();
             
             // Cette méthode fonctionne bien pour régler le découpage du texte à la fin de la première partie, mais ne marche pas pour les autres onglets -> (solutions ? Cf. https://stackoverflow.com/questions/1652406/php-pagination-script / ou créer une fonction wordwrap()?)
     
-            substr($chapter->content(), 0, strpos($chapter->content(), ' ', 3500)); ?>
+            substr($chapter->getContent(), 0, strpos($chapter->getContent(), ' ', 3500)); ?>
             </h5>
             
         */
 
             ?>
 
-            <h5 class="post-content" id="chapter-part1">
+            <h5 id="chapter-part1">
             <?= 
             // Starting point : 0
             // Showing 3500
-            substr($chapter->content(), 0, 3500); ?>
+            substr($chapter->getContent(), 0, 3500); ?>
             <?php 
             // Affichage du trait d'union uniquement si la taille du texte est supérieure à 3500 caractères
-            if(strlen($chapter->content()) > 3500){ 
+            if(strlen($chapter->getContent()) > 3500){ 
             ?>
                 
             -
@@ -113,17 +131,17 @@ $nav_title = $chapter->title();
 
     <?php 
     // Affichage onglet partie 2 du chapitre
-    if(strlen($chapter->content()) >= 3500): ?>
+    if(strlen($chapter->getContent()) >= 3500): ?>
 
             <h5 id="chapter-part2"> -
             <?= 
             // Starting point : 3500
             // Showing more 3500
-            substr($chapter->content(), 3500, 3500); ?>
+            substr($chapter->getContent(), 3500, 3500); ?>
         
             <?php 
             // Affichage du trait d'union uniquement si la taille du texte est supérieure à 7000 caractères
-            if(strlen($chapter->content()) > 7000){ 
+            if(strlen($chapter->getContent()) > 7000){ 
             ?>
                 
             -
@@ -136,14 +154,14 @@ $nav_title = $chapter->title();
 
     <?php 
     // Affichage onglet partie 3 du chapitre
-    if(strlen($chapter->content()) >= 7000): ?>
+    if(strlen($chapter->getContent()) >= 7000): ?>
 
 
             <h5 id="chapter-part3"> -
                 <?= 
                 // Starting point : 7000
                 // Showing all after this point..
-                substr($chapter->content(), 7000); ?>
+                substr($chapter->getContent(), 7000); ?>
             </h5>
 
 
@@ -193,7 +211,7 @@ $nav_title = $chapter->title();
     <?php 
     if($prevChapter): ?>
 
-    <a href="chapitre&amp;id=<?= $prevChapter->id() ?>" class="btn"><i class="fas fa-chevron-left"></i></a>
+    <a href="chapitre&amp;id=<?= $prevChapter->getId() ?>" class="btn"><i class="fas fa-chevron-left"></i></a>
 
     <?php endif; ?>
 
@@ -202,7 +220,7 @@ $nav_title = $chapter->title();
     <?php
     if($nextChapter): ?>
 
-    <a href="chapitre&amp;id=<?= $nextChapter->id() ?>" class="btn"><i class="fas fa-chevron-right"></i></a>
+    <a href="chapitre&amp;id=<?= $nextChapter->getId() ?>" class="btn"><i class="fas fa-chevron-right"></i></a>
 
     <?php endif; ?>
 
@@ -223,7 +241,7 @@ $nav_title = $chapter->title();
 
     <form action="#chap-like" method="post">
 
-        <input type="hidden" name="alarm" value="<?= $chapter->id() ?>" />
+        <input type="hidden" name="alarm" value="<?= $chapter->getId() ?>" />
 
         <input type="submit" name="loving" class="btn blue lighten-2" value="Oui !" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
@@ -325,12 +343,24 @@ $nav_title = $chapter->title();
 
         <hr size="1px" color="#dcdcdc">
 
-        <p>Par <?= ucfirst($comAsc->pseudo()) ?> le <?= $comAsc->commentDate() ?></p>
-        <p>'' <?= $comAsc->comment() ?> ''</p>
+        <p>Par <?= ucfirst($comAsc->getPseudo()) ?> le 
+ 
+            <?php
+
+            $sql_Date_2 = $comAsc->getCommentDate();
+
+            $new_Date_Format_2 = date("d .m Y à H:i", strtotime($sql_Date_2));
+
+            echo str_replace($month_1,$month_2,$new_Date_Format_2);
+
+            ?>
+        
+        </p>
+        <p>'' <?= $comAsc->getComment() ?> ''</p>
 
         <form action="#signal" method="post">
 
-            <input type="hidden" name="act" value="<?= $comAsc->id() ?>" />
+            <input type="hidden" name="act" value="<?= $comAsc->getId() ?>" />
             <input type="submit" name="alert" class="btn" value="Signaler" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
         </form>
@@ -353,12 +383,24 @@ $nav_title = $chapter->title();
 
         <hr size="1px" color="#dcdcdc">
 
-        <p>Par <?= ucfirst($comDesc->pseudo()) ?> le <?= $comDesc->commentDate() ?></p>
-        <p>'' <?= $comDesc->comment() ?> ''</p>
+        <p>Par <?= ucfirst($comDesc->getPseudo()) ?> le 
+        
+            <?php
+ 
+            $sql_Date_3 = $comDesc->getCommentDate();
+
+            $new_Date_Format_3 = date("d .m Y à H:i", strtotime($sql_Date_3));
+
+            echo str_replace($month_1,$month_2,$new_Date_Format_3);
+
+            ?>
+        
+        </p>
+        <p>'' <?= $comDesc->getComment() ?> ''</p>
 
         <form action="#signal" method="post">
 
-            <input type="hidden" name="act" value="<?= $comDesc->id() ?>" />
+            <input type="hidden" name="act" value="<?= $comDesc->getId() ?>" />
 
             <input type="submit" name="alert" class="btn" value="Signaler" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
