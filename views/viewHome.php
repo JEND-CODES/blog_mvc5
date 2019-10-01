@@ -9,11 +9,11 @@
         <?php foreach($backgrounds as $background): ?>
 
         <li>
-            <img src="<?= $background->content() ?>" alt="Billet simple pour l'Alaska" title="Billet simple pour l'Alaska">
+            <img src="<?= $background->getContent() ?>" alt="Billet simple pour l'Alaska" title="Billet simple pour l'Alaska">
 
             <div class="caption center-align">
 
-                <h3 class="slide_title"><?= $background->title() ?></h3>
+                <h3 class="slide_title"><?= $background->getTitle() ?></h3>
 
             </div>
         </li>
@@ -42,11 +42,17 @@
             <div class="card">
                 <div class="card-content">
 
-                    <a href="chapitre&amp;id=<?= $chapter->id() ?>">
-                        <p class="post-title">Chapitre <?= $chapter->chapi() ?> : <?= $chapter->title() ?></p>
+                    <a href="chapitre&amp;id=<?= $chapter->getId() ?>">
+                        <p class="post-title">Chapitre <?= $chapter->getChapi() ?> : <?= $chapter->getTitle() ?></p>
                     </a>
 
-                    <p class="post-content"><?= substr($chapter->content(), 0, 500) ?>...</p>
+                    <!-- L'utilisation d'un "Excerpt" est recommandée lors du découpage de données Html, au risque de générer des messages d'erreurs, puisqu'il peut arriver que les balises ouvrantes ne soient plus fermées -->
+                    
+                    <!-- La méthode strip_tags permet de retirer les balises pour obtenir les caractères bruts, mais alors pas de couleurs, de mises en page, d'images, etc. Au moins plus de messages d'erreurs ! -->
+                    
+                    <!-- On autorise les <br> à la fin du strip_tags pour éviter de se retrouver avec des textes qui se collent ???? -->
+                    
+                    <p class="post-content"><?= ucfirst(substr(strip_tags($chapter->getContent(),'<br>'),0,380)) ?>...</p>
 
                     <?php
 
@@ -56,7 +62,7 @@
                 /*   
                     echo '<hr>';
 
-                    echo preg_replace('/Test[\s\S]+?chapitre/', '', htmlentities(substr($chapter->content(), 0, 300)));
+                    echo preg_replace('/Test[\s\S]+?chapitre/', '', htmlentities(substr($chapter->getContent(), 0, 300)));
 
                     echo '<hr>';
                 */            
@@ -72,35 +78,35 @@
 
             // Utilisation fonctionnelle du remplacement des balises html et des caractères spéciaux
 
-            // Version 2 : Association des méthodes preg_replace, str_replace, substr, et htmlentities
+            // Version 2 fonctionnelle : Association des méthodes preg_replace, str_replace, substr, et htmlentities
 
             /*    
-                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->content(), 0, 3000));
+                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->getContent(), 0, 3000));
 
                 echo htmlentities(str_replace(array($br, $div,$div2,$em,$em2,$p,$p2,$img,$img2),array(' '),$test));
             */                
 
             /*                
-                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->content(), 0, 3000));
+                $test = preg_replace('/img[\s\S]+?auto/', '', substr($chapter->getContent(), 0, 3000));
             */
 
-            // Version 3 : Ajout d'éléments à effacer.. et utilisation de la méthode preg_quote() :
+            // Version 3 fonctionnelle : Ajout d'éléments à effacer.. et utilisation de la méthode preg_quote() :
 
             /*
                 // Pour repérage balise de fin d'un tag html d'image (à améliorer !) :
                 
                 $imageTagAuto = 'auto"';  (suppose que l'on indique un format height="auto" dans TinyMCE ?)
                 
-                $decode = preg_replace('/'.preg_quote('<img').'[\s\S]+?'.preg_quote(''.$imageTagAuto.'').'/', ' ', substr($chapter->content(), 0, 3000));
+                $decode = preg_replace('/'.preg_quote('<img').'[\s\S]+?'.preg_quote(''.$imageTagAuto.'').'/', ' ', substr($chapter->getContent(), 0, 3000));
 
                 echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' '),$decode)));
             */  
 
-            // Version 4 : 
+            // Version 4 fonctionnelle : 
         /*
             require_once('content/tags.php');
 
-            $decode = substr($chapter->content(), 0, 3000);
+            $decode = substr($chapter->getContent(), 0, 3000);
 
             echo (htmlentities(str_replace(array($sym0,$sym1,$sym2,$sym3,$sym4,$sym5,$sym6,$sym7,$sym8,$acc1,$acc2,$acc3,$br, $div,$div2,$em,$em2,$p,$p2,$endTag,$nbs,$stg,$stg2,$span, $span2),array('ë','&','ï','ä','ö','£','ù','µ','§','é','ê','à',' '),$decode)));
 
@@ -112,7 +118,7 @@
             ...</h5>
         */
                 ?>
-                    <a href="chapitre&amp;id=<?= $chapter->id() ?>" class="btn right"><i class="fas fa-eye"></i></a>
+                    <a href="chapitre&amp;id=<?= $chapter->getId() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
                     <br>
                     <br>
