@@ -20,3 +20,6 @@ Avancées principales :
 -> Ajouts de fonctionnalités str_replace dans viewHome 
 -> Ajouts de fonctionnalités .replace() dans script.js 
 -> Nouveaux réglages des balises TinyMCE
+-> Méthode strip_tags + substr sur viewHome pour corrections Html
+-> Renommages des fonctions Getters avec "get"
+-> Conversions PHP du format des dates SQL avec strtotime()
