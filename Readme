@@ -5,7 +5,7 @@ Avancées principales :
 -> Programmation orientée objets des Controllers
 -> Méthode __construct() et ajout de propriétés privées
 -> Révisions de l'architecture du projet
--> Corrections d'erreurs HTML
+-> Vérifications et corrections d'erreurs HTML pour toutes les pages
 -> Révision des Polices du site
 -> Réglages Responsive Design
 -> Retouches des fichiers Models
