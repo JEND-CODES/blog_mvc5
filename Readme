@@ -24,3 +24,4 @@ Avancées principales :
 -> Renommages des fonctions Getters avec "get"
 -> Conversions PHP du format des dates SQL avec strtotime()
 -> Style.css préventions des dépassements de champs avec break-work;
+-> Nouveau modèle d'instanciation des Classes Controllers dans le Router
