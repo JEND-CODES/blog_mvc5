@@ -23,3 +23,4 @@ Avancées principales :
 -> Méthode strip_tags + substr sur viewHome pour corrections Html
 -> Renommages des fonctions Getters avec "get"
 -> Conversions PHP du format des dates SQL avec strtotime()
+-> Style.css préventions des dépassements de champs avec break-work;
