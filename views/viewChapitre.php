@@ -66,7 +66,7 @@ require_once('content/dates.php'); ?>
     
 </p>
 
-<br>
+<br />
 
 <div class="button-parts">
     
@@ -167,8 +167,8 @@ require_once('content/dates.php'); ?>
 
     <?php endif; ?>
 
-<br>
-<br>
+<br />
+<br />
 
 <?php 
 
@@ -204,7 +204,7 @@ require_once('content/dates.php'); ?>
     </div>
 </div>
 
-<br>
+<br />
 
 <div class="row" id="chapter-link">
 
@@ -224,8 +224,8 @@ require_once('content/dates.php'); ?>
 
     <?php endif; ?>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
     <!-- Appréciation du chapitre-->
     <p>Avez-vous apprécié ce chapitre ?</p>
@@ -234,7 +234,7 @@ require_once('content/dates.php'); ?>
                 
     if(isset($likethis)): ?>
 
-    <br>
+    <br />
     <p><?= $likethis ?></p>
 
     <?php endif; ?>
@@ -249,8 +249,8 @@ require_once('content/dates.php'); ?>
 
 </div>
 
-<br>
-<br>
+<br />
+<br />
 
 <div class="row" id="form-comment">
 
@@ -279,7 +279,7 @@ require_once('content/dates.php'); ?>
 </div>
 
 
-<br id="signal">
+<br id="signal" />
 
 <section class="chapter-part2" id="victory">
 
@@ -298,7 +298,7 @@ require_once('content/dates.php'); ?>
                 
         if(!empty($errors)): ?>
 
-        <br>
+        <br />
 
         <?php foreach($errors as $error): ?>
 
@@ -308,7 +308,7 @@ require_once('content/dates.php'); ?>
 
         <?php endforeach; ?>
 
-        <br>
+        <br />
 
         <?php endif; ?>
 
@@ -330,7 +330,7 @@ require_once('content/dates.php'); ?>
 
         <?php endif; ?>
 
-
+        
         <?= 
         // Message lorsqu'il n'y a pas encore de commentaires
         $nocomment2 
@@ -341,7 +341,7 @@ require_once('content/dates.php'); ?>
         // Affichage des 5 derniers commentaires
         foreach($comments2 as $comAsc): ?>
 
-        <hr size="1px" color="#dcdcdc">
+        <hr class="simple-line">
 
         <p>Par <?= ucfirst($comAsc->getPseudo()) ?> le 
  
@@ -365,7 +365,7 @@ require_once('content/dates.php'); ?>
 
         </form>
 
-        <br>
+        <br />
 
         <?php endforeach; ?>
 
@@ -374,14 +374,15 @@ require_once('content/dates.php'); ?>
 
     <div class="container" id="ghost2">
 
-        <h5><?= $nocomment ?> (total&#8239;:&#8239;<?= $countComments ?>)</h5>
-        <br>
+        <?= $nocomment ?> 
+        <p>(total&#8239;:&#8239;<?= $countComments ?>)</p>
+        <br />
 
         <?php
         // Affichage de tous les commentaires du chapitre
         foreach($comments as $comDesc): ?>
 
-        <hr size="1px" color="#dcdcdc">
+        <hr class="simple-line">
 
         <p>Par <?= ucfirst($comDesc->getPseudo()) ?> le 
         
@@ -406,7 +407,7 @@ require_once('content/dates.php'); ?>
 
         </form>
 
-        <br>
+        <br />
 
         <?php endforeach; ?>
 
