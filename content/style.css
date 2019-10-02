@@ -15,10 +15,27 @@ p {
     font-size: 20px;
 }
 
+. responsive-img {
+    width: 100%;
+}
+
+.title-comments {
+    font-size: 24px;
+}
+
+.simple-line {
+    color: #dcdcdc;
+    opacity: 0.3;
+}
+
+.simple-line2 {
+    opacity: 0;
+    height: 2px;
+}
+
 .slide_title {
     font-family: 'Caveat', cursive;
     font-size: 36px;
-
 }
 
 @media all and (min-width:800px) {
@@ -37,11 +54,23 @@ p {
     }
 }
 
+#test1 {
+    word-wrap: break-word !important;
+}
+
+#test2 {
+    word-wrap: break-word !important;
+}
+
 #nav-button {
     border-radius: 20px !important;
     height: 30px !important;
     line-height: 28px !important;
     text-transform: none !important;
+}
+
+#sommaire-size {
+    word-wrap: break-word !important;
 }
 
 @media all and (min-width:1300px) {
@@ -187,18 +216,21 @@ p {
     font-size: 22px !important;
     margin-left: 7.5%;
     margin-right: 7.5%;
+    word-wrap: break-word !important;
 }
 
 #chapter-part2 {
     font-size: 22px !important;
     margin-left: 7.5%;
     margin-right: 7.5%;
+    word-wrap: break-word !important;
 }
 
 #chapter-part3 {
     font-size: 22px !important;
     margin-left: 7.5%;
     margin-right: 7.5%;
+    word-wrap: break-word !important;
 }
 
 #chapter-title {
@@ -207,6 +239,7 @@ p {
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.75);
     text-align: center;
+    word-wrap: break-word !important;
 }
 
 #chapter-title2 {
@@ -240,18 +273,21 @@ p {
     font-size: 24px !important;
 }
 
+/* Eviter les mots trop longs qui dépassent des champs -> Utiliser word-wrap -> Cf. https://stackoverflow.com/questions/15326735/add-space-when-a-word-is-too-long */
 .post-content {
     font-size: 22px !important;
+    word-wrap: break-word !important;
 }
 
-/*Réglage de la taille max des images présentes dans les contenus des chapitres*/
+/*Réglage de la taille max des images présentes dans les contenus des chapitres sur viewHome (n'est plus nécessaire suite à l'ajout d'un strip_tags)*/
 
+/*
 .post-content img {
     width: 30% !important;
     height: auto !important;
     max-width: 100% !important;
 }
-
+*/
 input[type=text] {
     font-size: 16px !important;
 }
@@ -311,6 +347,7 @@ input[type=password] {
     width: 60%;
     margin: auto;
     text-align: center;
+    word-wrap: break-word !important;
 }
 
 @media all and (max-width:800px) {
@@ -323,6 +360,7 @@ input[type=password] {
     width: 60%;
     margin: auto;
     text-align: center;
+    word-wrap: break-word !important;
 }
 
 @media all and (max-width:800px) {
@@ -341,6 +379,10 @@ input[type=password] {
     position: absolute;
     top: -20px;
     left: 12px;
+}
+
+.slider {
+    word-wrap: break-word !important;
 }
 
 /*Changement de couleur des dots du Slider Materialize*/
@@ -369,6 +411,10 @@ input[type=password] {
 
 .card-reveal {
     text-align: center;
+}
+
+.card-content {
+    word-wrap: break-word !important;
 }
 
 #errors {
@@ -598,10 +644,8 @@ button[type=submit] {
     }
 }
 
-
 h1 {
     font-size: 22px !important;
-
 }
 
 @media all and (max-width:992px) {
@@ -662,14 +706,13 @@ a {
     position:absolute;
     width:100%;
     left:0 !important;
-
 }
 */
+
 /*
 #myfooter {
     width:141% !important;
     margin-left:-21% !important;
-    
 }
 */
 
