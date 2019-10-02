@@ -6,8 +6,8 @@ $nav_title = "Sommaire";
 
 </header>
 
-<br>
-<br>
+<br />
+<br />
 
 <section class="container" id="sommaire-size">
     <div class="row">
@@ -18,24 +18,24 @@ $nav_title = "Sommaire";
 
         <div class="col s6">
             
-            <p>Chapitre <?= $chapter2->chapi() ?></p>
+            <p>Chapitre <?= $chapter2->getChapi() ?></p>
 
-            <a href="chapitre&amp;id=<?= $chapter2->id() ?>">
-                <p class="sommaire-title"><?= $chapter2->title() ?></p>
+            <a href="chapitre&amp;id=<?= $chapter2->getId() ?>">
+                <p class="sommaire-title"><?= $chapter2->getTitle() ?></p>
             </a>
 
             <?php
             //Si le champs Homepage Specific Post Image est vide, ne pas afficher
-            if(!empty($chapter2->zerolink())):      
+            if(!empty($chapter2->getZerolink())):      
             ?>
 
-            <a href="chapitre&amp;id=<?= $chapter2->id() ?>">
-                <img src="<?= $chapter2->zerolink() ?>" alt="Billet simple pour l'Alaska" title="Billet simple pour l'Alaska" width="100%">
+            <a href="chapitre&amp;id=<?= $chapter2->getId() ?>">
+                <img src="<?= $chapter2->getZerolink() ?>" alt="Billet simple pour l'Alaska" title="Billet simple pour l'Alaska" class="responsive-img" />
             </a>
 
             <?php endif; ?>
 
-            <hr size="1px" color="#dcdcdc">
+            <hr class="simple-line">
         </div>
 
         <?php endforeach; ?>
