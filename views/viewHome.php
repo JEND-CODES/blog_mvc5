@@ -26,7 +26,7 @@
 
 <div id="chapitres"></div>
 
-<br><br><br><br>
+<br /><br /><br /><br />
 
 <div class="home-sub">
     <h5>Dernières publications</h5>
@@ -50,7 +50,7 @@
                     
                     <!-- La méthode strip_tags permet de retirer les balises pour obtenir les caractères bruts, mais alors pas de couleurs, de mises en page, d'images, etc. Au moins plus de messages d'erreurs ! -->
                     
-                    <!-- On autorise les <br> à la fin du strip_tags pour éviter de se retrouver avec des textes qui se collent ???? -->
+                    <!-- On autorise les <br /> à la fin du strip_tags pour éviter de se retrouver avec des textes qui se collent ???? -->
                     
                     <p class="post-content"><?= ucfirst(substr(strip_tags($chapter->getContent(),'<br>'),0,380)) ?>...</p>
 
@@ -120,8 +120,8 @@
                 ?>
                     <a href="chapitre&amp;id=<?= $chapter->getId() ?>" class="btn right"><i class="fas fa-eye"></i></a>
 
-                    <br>
-                    <br>
+                    <br />
+                    <br />
 
                 </div>
             </div>
@@ -179,14 +179,14 @@
                                 <input type="text" name="infoname" id="infoname" value="<?php if(isset($infoname)) echo $infoname; ?>" placeholder="Nom" />
                             </div>
 
-                            <br>
+                            <br />
 
                             <textarea name="content" id="content"><?php if(isset($content)) echo $content; ?></textarea>
                             <br />
                             <button type="submit" class="btn right">Envoyer&nbsp;<i class="fab fa-telegram-plane"></i></button>
 
-                            <br>
-                            <br>
+                            <br />
+                            <br />
 
                         </form>
 
