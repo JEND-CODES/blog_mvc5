@@ -5,7 +5,7 @@ tinymce.addI18n('fr_FR',{
 "Copy": "Copier",
 "Paste": "Coller",
 "Select all": "Tout s\u00e9lectionner",
-"New document": "Nouveau document",
+"New document": "Réécrire ce chapitre",
 "Ok": "Ok",
 "Cancel": "Annuler",
 "Visual aids": "Aides visuelle",
