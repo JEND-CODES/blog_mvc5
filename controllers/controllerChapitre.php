@@ -96,8 +96,8 @@ class ControllerChapitre
             }
 
             // Sélection de l'ID d'un chapitre avec format de date modifié
-            $chapter = $this->show_post->selectChapterFront($id);   
-
+            $chapter = $this->show_post->selectChapterFront($id);
+            
             // Select article précédent
             $prevChapter = $this->show_post->prevChapter($id);   
 
@@ -123,11 +123,11 @@ class ControllerChapitre
 
             }else
             {
-                $toggle = '<br/><button class="waves-effect waves-light btn grey lighten-1 right" id="ghost"><p id="ghost4"><i class="fas fa-long-arrow-alt-down"></i></p><p id="ghost3"><i class="fas fa-long-arrow-alt-up"></i></p></button><br/><br/>';
+                $toggle = '<br/><a class="waves-effect waves-light btn grey lighten-1 right" id="ghost"><p id="ghost4"><i class="fas fa-long-arrow-alt-down"></i></p><p id="ghost3"><i class="fas fa-long-arrow-alt-up"></i></p></a><br/><br/>';
 
-                $nocomment = 'Commentaires du chapitre';
+                $nocomment = '<p class="title-comments">Commentaires du chapitre</p>';
 
-                $nocomment2 = '<h5>Derniers commentaires</h5><br">';
+                $nocomment2 = '<br/><p class="title-comments">Derniers commentaires</p><br/>';
             }
 
             // Chapter Alarm + 1
