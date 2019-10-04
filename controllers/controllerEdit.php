@@ -33,6 +33,9 @@ class ControllerEdit
 
             if(empty($title))
                 array_push($errors, 'Titre manquant');
+            
+            if(!empty($title) && strlen($title)>400)
+                array_push($errors, "Titre trop long");
 
             if(empty($chapi))
                 array_push($errors, 'Précisez le numéro du chapitre');
