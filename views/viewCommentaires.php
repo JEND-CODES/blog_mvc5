@@ -4,15 +4,19 @@ $nav_title = "Gestion des commentaires";
 
 <?php require_once('views/header.php'); ?>
 
+<?php 
+// Appel pour changements du format des dates ($month_1, $month_2)
+require_once('content/dates.php'); ?>
+
 </header>
 
 <section id="commentaires-signales" class="container">
 
-    <br>
+    <br />
 
     <a href="connect" class="btn"><i class="fas fa-arrow-left"></i></a>
 
-    <br><br>
+    <br /><br />
 
     <!--Materialize Tabs-->
 
@@ -46,20 +50,32 @@ $nav_title = "Gestion des commentaires";
 
                     <li class="collection-item">
 
-                        <p>Le commentaire de <?= ucfirst($alarmComment->pseudo()) ?> &rArr; <a href="https://login.yahoo.com/" target="_blank" class="linkmail"><?= $alarmComment->email() ?></a> posté le <?= $alarmComment->commentDate() ?> a été signalé <?= $alarmComment->alarm() ?> fois</p>
+                        <p>Le commentaire de <?= ucfirst($alarmComment->getPseudo()) ?> &rArr; <a href="https://login.yahoo.com/" target="_blank" class="linkmail"><?= $alarmComment->getEmail() ?></a> posté le 
+       
+                            <?php
 
-                        <p>''&nbsp;<?= $alarmComment->comment() ?>&nbsp;''</p>
+                            $sql_Date_1 = $alarmComment->getCommentDate();
+
+                            $new_Date_Format_1 = date("d .m Y à H:i", strtotime($sql_Date_1));
+
+                            echo str_replace($month_1,$month_2,$new_Date_Format_1);
+
+                            ?>
+
+                            a été signalé <?= $alarmComment->getAlarm() ?> fois</p>
+
+                        <p>''&nbsp;<?= $alarmComment->getComment() ?>&nbsp;''</p>
 
                         <form action="commentaires" method="post">
 
-                            <input type="hidden" name="act" value="<?= $alarmComment->id() ?>" />
+                            <input type="hidden" name="act" value="<?= $alarmComment->getId() ?>" />
 
                             <input type="submit" name="delete" class="btn right" value="Supprimer" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
                         </form>
 
-                        <br>
-                        <br>
+                        <br />
+                        <br />
 
                     </li>
 
@@ -79,20 +95,32 @@ $nav_title = "Gestion des commentaires";
 
                     <li class="collection-item">
 
-                        <p>Posté par <?= ucfirst($alarmComment2->pseudo()) ?> &rArr; <a href="https://login.yahoo.com/" target="_blank" class="linkmail"><?= $alarmComment2->email() ?></a> le <?= $alarmComment2->commentDate() ?>&#8239;: </p>
+                        <p>Posté par <?= ucfirst($alarmComment2->getPseudo()) ?> &rArr; <a href="https://login.yahoo.com/" target="_blank" class="linkmail"><?= $alarmComment2->getEmail() ?></a> le 
 
-                        <p>''&nbsp;<?= $alarmComment2->comment() ?>&nbsp;''</p>
+                            <?php
+
+                            $sql_Date_2 = $alarmComment2->getCommentDate();
+
+                            $new_Date_Format_2 = date("d .m Y à H:i", strtotime($sql_Date_2));
+
+                            echo str_replace($month_1,$month_2,$new_Date_Format_2);
+
+                            ?>
+
+                            &#8239;: </p>
+
+                        <p>''&nbsp;<?= $alarmComment2->getComment() ?>&nbsp;''</p>
 
                         <form action="commentaires" method="post">
 
-                            <input type="hidden" name="act" value="<?= $alarmComment2->id() ?>" />
+                            <input type="hidden" name="act" value="<?= $alarmComment2->getId() ?>" />
 
                             <input type="submit" name="delete" class="btn right" value="Supprimer" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
                         </form>
 
-                        <br>
-                        <br>
+                        <br />
+                        <br />
 
                     </li>
 
