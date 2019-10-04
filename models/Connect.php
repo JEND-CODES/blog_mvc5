@@ -24,15 +24,15 @@ class Connect
     }
     
     
-    public function id()
+    public function getId()
     {
         return $this->_id;    
     }   
-    public function user()
+    public function getUser()
     {
         return $this->_user;     
     }   
-    public function password()
+    public function getPassword()
     {
         return $this->_password;    
     }   
