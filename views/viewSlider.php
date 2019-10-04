@@ -8,15 +8,15 @@ $nav_title = "Édition du Slideshow";
 
 <section class="container">
 
-    <br>
+    <br />
 
     <a href="connect" class="btn"><i class="fas fa-arrow-left"></i></a>
 
-    <br><br>
+    <br /><br />
 
     <div class="centered" id="stayhere2">
 
-        <h4>Edition du slideshow</h4>
+        <h5>Edition du slideshow</h5>
 
     </div>
 
@@ -54,17 +54,17 @@ $nav_title = "Édition du Slideshow";
 
                             <input type="text" name="title" id="title" value="<?php if(isset($title)) echo $title; ?>" placeholder="Message" />
 
-                            <br>
+                            <br />
 
                             <input type="text" name="content" id="content2" value="<?php if(isset($content)) echo $content; ?>" placeholder="URL de l'image" />
 
-                            <br>
-                            <br>
+                            <br />
+                            <br />
 
                             <button type="submit" class="btn right">Ajouter&nbsp;<i class="fas fa-image"></i></button>
 
-                            <br>
-                            <br>
+                            <br />
+                            <br />
 
                         </form>
 
@@ -77,7 +77,7 @@ $nav_title = "Édition du Slideshow";
 
     <div class="centered">
 
-        <h4>A la Une</h4>
+        <h5>A la Une</h5>
 
     </div>
 
@@ -104,28 +104,28 @@ $nav_title = "Édition du Slideshow";
 
                             <p>Message&#8239;:</p>
 
-                            <br>
+                            <br />
 
-                            <p><?= $background->title() ?>
+                            <p><?= $background->getTitle() ?>
                             </p>
 
-                            <br>
+                            <br />
 
-                            <img src="<?= $background->content() ?>" alt="<?= $background->title() ?>" title="Billet simple pour l'Alaska" width="100%">
+                            <img src="<?= $background->getContent() ?>" alt="<?= $background->getTitle() ?>" title="Billet simple pour l'Alaska" width="100%">
 
-                            <hr size="1px" color="#dcdcdc">
+                            <hr class="simple-line">
 
-                            <p>Image ajoutée le <?= $background->backgroundDate() ?></p>
+                            <p>Image ajoutée le <?= $background->getBackgroundDate() ?></p>
 
                             <form action="slider" method="post">
 
-                                <input type="hidden" name="retirer" value="<?= $background->id() ?>" />
+                                <input type="hidden" name="retirer" value="<?= $background->getId() ?>" />
 
                                 <input type="submit" name="trash2" class="btn right cyan darken-2" value="Supprimer" onclick="return(confirm('Validez-vous ce choix ?'));" />
 
                             </form>
 
-                            <br>
+                            <br />
 
                         </span>
 
