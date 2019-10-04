@@ -24,19 +24,19 @@ class Background
         }
     }
   
-    public function id()
+    public function getId()
     {
         return $this->_id;    
     }
-    public function title()
+    public function getTitle()
     {
         return $this->_title;    
     }
-    public function content()
+    public function getContent()
     {
         return $this->_content;    
     }
-    public function backgroundDate()
+    public function getBackgroundDate()
     {
         return $this->_backgroundDate;
     }   
@@ -65,4 +65,3 @@ class Background
     }
 }
 
-?>
