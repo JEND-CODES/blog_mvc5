@@ -46,7 +46,7 @@ class RepositoryConnect extends Database
     public function updatePassword($connect)
     {
         $req = $this->connectDB()->prepare('UPDATE managers SET password = ? WHERE user = ?');
-        $req->execute(array($connect->password(), $connect->user()));
+        $req->execute(array($connect->getPassword(), $connect->getUser()));
         $req->closeCursor(); 
     }
     
