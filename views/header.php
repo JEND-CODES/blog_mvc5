@@ -51,6 +51,22 @@
             });
         },
             */
+            
+            // 30 septembre -> Cette fonction ajoute une balise <br /> supplémentaire lors d'un saut de ligne et intercale un espace vide (&nbsp;) entre les deux balises <br /> -> pour éviter que les mots collent les uns aux autres lors de l'affichage sur viewHome qui utilise un strip_tags :
+            /*
+            setup: function(editor) {
+            editor.on('PostProcess', function(ed) {
+            ed.content = ed.content.replace(/(<br \/>)/gi,'<br \/>&nbsp;<br \/>');
+            });
+        },
+        */
+            // 1er octobre -> Cette fonction remplace un nombre trop important de balises <br /> consécutives -> 8 x <br /> = 2 <br /> !
+            // -> Cela empêche d'avoir un aperçu du chapitre en page d'accueil avec des <br /> infinis qui ne sont pas annulés par le substring !
+            setup: function(editor) {
+            editor.on('PostProcess', function(ed) {
+            ed.content = ed.content.replace(/(<br \/><br \/><br \/><br \/><br \/><br \/><br \/><br \/>)/gi,'<br \/><br \/>');
+            });
+        },
             selector: 'textarea.tinymce',
             language: 'fr_FR',
             height: 700,
@@ -61,7 +77,7 @@
             
             // Tests du 27-30 sept : Réglage en forced_p_newlines:'true' pour améliorer (?) le décodage htmlentities ajouté dans viewHome (retrait du force_root_block = '')
             
-            // Test sans insertions de balises <p> (il n'y aura donc que des <span> et des <br>): 
+            // Test sans insertions de balises <p> (il n'y aura donc que des <span> et des <br />): 
             force_br_newlines: true,
             force_p_newlines: false,
             
