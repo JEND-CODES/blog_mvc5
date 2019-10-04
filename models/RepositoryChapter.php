@@ -2,18 +2,7 @@
 
 class RepositoryChapter extends Database
 {
-    private $_dateFormat_1;
-    private $_dateFormat_2;
     
-    public function __construct(){
-        
-        // Construction de formats des dates pour simplifier les différents appels dans les requêtes SQL :
-        
-        $this->_dateFormat_1 = 'DATE_FORMAT(date, "%d/%m/%Y à %Hh %imin %ss") AS chapterDate, DATE_FORMAT(refreshdate, "%d/%m/%Y à %Hh %imin %ss") AS refreshDate';
-        
-        $this->_dateFormat_2 = 'DATE_FORMAT(date, "%d.%m.%Y") AS chapterDate';
-        
-    }
     //Création de méthodes -> Pour la déclaration de méthodes, il suffit de faire précéder le mot-clé function à la visibilité de la méthode
     
     //CF. Tuto OpenC https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet
@@ -28,7 +17,8 @@ class RepositoryChapter extends Database
         
         $req = $this->connectDB()->query(
             'SELECT *, 
-            '.$this->_dateFormat_1.' 
+            date AS chapterDate, 
+            refreshdate 
             FROM chapters 
             ORDER BY id 
             DESC'
@@ -49,7 +39,7 @@ class RepositoryChapter extends Database
         
     }
     
-    // Récupération de tous les chapitres (Pour page Accueil) + nombre de caractères limités (SUBSTRING réglé dans viewHome)
+    // Récupération de tous les chapitres (Pour page Accueil)
     public function selectChaptersDesc()
     {  
         $chapters1 = array();
@@ -59,7 +49,7 @@ class RepositoryChapter extends Database
             FROM chapters 
             ORDER BY id 
             DESC 
-            LIMIT 0,3'
+            LIMIT 0,5'
         );
         
         $req->execute();
@@ -116,12 +106,13 @@ class RepositoryChapter extends Database
         $req->closeCursor();
     }
     
-    // Récupération d'un chapitre spécifique avec format de date modifié (pour affichage page spécifique d'un chapitre)
+    // Récupération d'un chapitre spécifique avec format de date modifié (pour affichage page spécifique d'un chapitre) + nombre de caractères limités (plusieurs SUBSTRING réglés dans viewChapitre)
     public function selectChapterFront($id)
     {
         $req = $this->connectDB()->prepare(
             'SELECT *,
-            '.$this->_dateFormat_2.'
+            date AS chapterDate, 
+            refreshdate
             FROM chapters 
             WHERE id = ?'
         );
@@ -143,7 +134,7 @@ class RepositoryChapter extends Database
     public function insertChapter($edit)
     {
         $req = $this->connectDB()->prepare('INSERT INTO chapters (title, content, chapi, zerolink, date) VALUES(?, ?, ?, ?, NOW())');
-        $req->execute(array($edit->title(), $edit->content(), $edit->chapi(),$edit->zerolink()));
+        $req->execute(array($edit->getTitle(), $edit->getContent(), $edit->getChapi(),$edit->getZerolink()));
         $req->closeCursor();    
     }
    
@@ -151,7 +142,7 @@ class RepositoryChapter extends Database
     public function updateChapter($chapter)
     {
         $req = $this->connectDB()->prepare('UPDATE chapters SET title = ?, content = ?, chapi = ?, zerolink = ?, refreshdate = NOW() WHERE id = ?');
-        $req->execute(array($chapter->title(), $chapter->content(), $chapter->chapi(), $chapter->zerolink(), $chapter->id()));
+        $req->execute(array($chapter->getTitle(), $chapter->getContent(), $chapter->getChapi(), $chapter->getZerolink(), $chapter->getId()));
         $req->closeCursor();   
     }
     
