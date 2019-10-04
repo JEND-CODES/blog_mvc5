@@ -43,35 +43,35 @@ class Chapter
     //lorsque les attributs des objets sont inaccessibles (private et encapsulés dans une classe) -> Il faut créer des getters pour pouvoir les lire, et des setters pour pouvoir modifier leurs valeurs.
     
     //Appeler les méthodes de l'objet - Pour appeler une méthode d'un objet, il va falloir utiliser un opérateur : il s'agit de l'opérateur " -> " 
-    public function id()
+    public function getId()
     {
         return $this->_id;    
     }
-    public function title()
+    public function getTitle()
     {
         return $this->_title;    
     }
-    public function content()
+    public function getContent()
     {
         return $this->_content;    
     }
-    public function chapi()
+    public function getChapi()
     {
         return $this->_chapi;    
     }
-    public function alarm()
+    public function getAlarm()
     {
         return $this->_alarm;    
     }
-    public function zerolink()
+    public function getZerolink()
     {
         return $this->_zerolink;    
     }
-    public function chapterDate()
+    public function getChapterDate()
     {
         return $this->_chapterDate;
     } 
-    public function refreshDate()
+    public function getRefreshDate()
     {
         return $this->_refreshDate;
     } 
