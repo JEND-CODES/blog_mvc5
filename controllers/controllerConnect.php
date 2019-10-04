@@ -64,7 +64,7 @@ class ControllerConnect
         $alarmComments = $this->admin_comments->countAlarmComments();
 
         // Décompte total du nombre de commentaires
-        $alarmComments3 = $this->admin_comments->countAlarmComments2();
+        $totalComments = $this->admin_comments->countNumberComments();
 
 
         require_once('views/viewConnect.php');
