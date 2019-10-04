@@ -28,6 +28,9 @@ class ControllerSlider
 
             if(empty($title))
                 array_push($errors, "Il manque votre message");
+            
+            if(!empty($title) && strlen($title)>300)
+                array_push($errors, "Message trop long");
 
             if(empty($content))
                 array_push($errors, "Entrez l'URL de l'image");
