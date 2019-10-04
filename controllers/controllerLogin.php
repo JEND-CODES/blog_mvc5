@@ -6,7 +6,8 @@ class ControllerLogin
 {
     private $admin_log;
     
-    public function __construct(){
+    public function __construct()
+    {
         
         $this->admin_log = new RepositoryConnect();
     }
