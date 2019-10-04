@@ -6,16 +6,16 @@ $nav_title = "Modifier un chapitre";
 
 </header>
 
-<br>
+<br />
 <section class="container">
 
     <a href="connect" class="btn"><i class="fas fa-arrow-left"></i></a>
 
-    <br><br>
+    <br /><br />
 
     <div class="row">
 
-        <form action="change&amp;id=<?= $chapter->id() ?>" method="post">
+        <form action="change&amp;id=<?= $chapter->getId() ?>" method="post">
 
             <?php 
                 
@@ -39,31 +39,31 @@ $nav_title = "Modifier un chapitre";
 
             <div class="input-field col s12">
 
-                <input type="text" name="title" id="title" value="<?= $chapter->title() ?>" placeholder="Titre du chapitre" />
+                <input type="text" name="title" id="title" value="<?= $chapter->getTitle() ?>" placeholder="Titre du chapitre" />
 
             </div>
 
             <div class="input-field col s6">
 
-                <input type="number" name="chapi" id="chapi" value="<?= $chapter->chapi() ?>" placeholder="Numéro" />
+                <input type="number" name="chapi" id="chapi" value="<?= $chapter->getChapi() ?>" placeholder="Numéro" />
 
             </div>
 
             <div class="input-field col s6">
 
-                <input type="text" name="zerolink" id="zerolink" value="<?= $chapter->zerolink() ?>" placeholder="Thumbnail" />
+                <input type="text" name="zerolink" id="zerolink" value="<?= $chapter->getZerolink() ?>" placeholder="Thumbnail" />
 
             </div>
 
-            <br>
+            <br />
 
             <div class="adjust-tiny">
-                <br><br><br><br><br><br><br><br>
+                <br /><br /><br /><br /><br /><br /><br /><br />
             </div>
 
-            <textarea name="content" id="content" class="tinymce"><?= $chapter->content() ?></textarea>
+            <textarea name="content" id="content" class="tinymce"><?= $chapter->getContent() ?></textarea>
 
-            <br>
+            <br />
 
             <button type="submit" class="btn right">Modifier&nbsp;<i class="fas fa-exchange-alt"></i></button>
 
