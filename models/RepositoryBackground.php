@@ -7,7 +7,7 @@ class RepositoryBackground extends Database
     {  
         $backgrounds = array();
         
-        $req = $this->connectDB()->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS backgroundDate FROM backgrounds ORDER BY id DESC');
+        $req = $this->connectDB()->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%i\') AS backgroundDate FROM backgrounds ORDER BY id DESC');
         $req->execute();
         while($data = $req->fetch())
         {
@@ -34,7 +34,7 @@ class RepositoryBackground extends Database
     public function insertBackground($ajouter)
     {
         $req = $this->connectDB()->prepare('INSERT INTO backgrounds (title, content, date) VALUES(?, ?, NOW())');
-        $req->execute(array($ajouter->title(), $ajouter->content()));
+        $req->execute(array($ajouter->getTitle(), $ajouter->getContent()));
         $req->closeCursor();    
     }
    
