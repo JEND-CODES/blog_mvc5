@@ -7,7 +7,7 @@ class RepositoryMessage extends Database
     {  
         $messages = array();
         
-        $req = $this->connectDB()->query('SELECT id, email, infoname, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS messageDate FROM messages ORDER BY id DESC');
+        $req = $this->connectDB()->query('SELECT id, email, infoname, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%i\') AS messageDate FROM messages ORDER BY id DESC');
         $req->execute();
         while($data = $req->fetch())
         {
@@ -34,7 +34,7 @@ class RepositoryMessage extends Database
     public function insertMessage($plus)
     {
         $req = $this->connectDB()->prepare('INSERT INTO messages (email, infoname, content, date) VALUES(?, ?, ?, NOW())');
-        $req->execute(array($plus->email(), $plus->infoname(), $plus->content()));
+        $req->execute(array($plus->getEmail(), $plus->getInfoname(), $plus->getContent()));
         $req->closeCursor();    
     }
    
