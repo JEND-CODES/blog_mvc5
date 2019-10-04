@@ -7,12 +7,12 @@ $nav_title = "Nouveau chapitre";
 
 </header>
 
-<br>
+<br />
 <section class="container">
 
     <a href="connect" class="btn"><i class="fas fa-arrow-left"></i></a>
 
-    <br><br>
+    <br /><br />
 
     <div class="row">
 
@@ -56,15 +56,15 @@ $nav_title = "Nouveau chapitre";
                 
             </div>
 
-            <br>
+            <br />
             
             <div class="adjust-tiny">
-            <br><br><br><br><br><br><br><br>
+            <br /><br /><br /><br /><br /><br /><br /><br />
             </div>
 
             <textarea name="content" id="content" class="tinymce"><?php if(isset($content)) echo $content; ?></textarea>
 
-            <br>
+            <br />
 
             <button type="submit" class="btn right">Publier&nbsp;<i class="fas fa-feather-alt"></i></button>
         </form>
