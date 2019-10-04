@@ -6,7 +6,7 @@ $nav_title = "Statistiques";
 
 </header>
 
-<br>
+<br />
 
 <div class="container">
 
@@ -16,7 +16,7 @@ $nav_title = "Statistiques";
 
 <div class="centered">
 
-    <h4>Likes par chapitres</h4>
+    <h5>Likes par chapitres</h5>
 
 </div>
 
