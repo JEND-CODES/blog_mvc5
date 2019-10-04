@@ -36,7 +36,7 @@ class ControllerPassword
             if(empty($password))
                 array_push($errors, 'Entrez le mot de passe actuel');
 
-            if(!empty($password) && sha1($password) != $connect->password())
+            if(!empty($password) && sha1($password) != $connect->getPassword())
                 array_push($errors, 'Mot de passe actuel inexact');
 
             if(empty($password2))
@@ -44,6 +44,9 @@ class ControllerPassword
 
             if(!empty($password2) && strlen($password2)>15)
                 array_push($errors, 'Nouveau mot de passe trop long');
+            
+            if(!empty($password2) && strlen($password2)<5)
+                array_push($errors, 'Nouveau mot de passe trop court');
 
             if($checkpwd2 != $password2)
                 array_push($errors, 'Champ de confirmation inexact');
