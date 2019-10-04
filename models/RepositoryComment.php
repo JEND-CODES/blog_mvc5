@@ -2,17 +2,7 @@
 
 class RepositoryComment extends Database
 {
-    private $_dateComment_1;
-    private $_dateComment_2;
     
-    public function __construct(){
-        
-        $this->_dateComment_1 = 'DATE_FORMAT(date, "%d/%m/%Y à %Hh %imin %ss") AS commentDate';
-        
-        $this->_dateComment_2 = 'DATE_FORMAT(date, "%d/%m/%Y à %Hh%i") AS commentDate';
-       
-    }
-
     //cf. Tuto OpenC https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet
     
     // Sélection de tous les commentaires (affichage page d'un chapitre)
@@ -22,7 +12,7 @@ class RepositoryComment extends Database
         
         $req = $this->connectDB()->prepare(
             'SELECT *, 
-            '.$this->_dateComment_2.' 
+            date AS commentDate 
             FROM comments 
             WHERE chapter_id = ? 
             ORDER BY id 
@@ -44,7 +34,7 @@ class RepositoryComment extends Database
         
         $req = $this->connectDB()->prepare(
             'SELECT *, 
-            '.$this->_dateComment_1.' 
+            date AS commentDate 
             FROM comments 
             WHERE chapter_id = ? 
             ORDER BY id 
@@ -66,7 +56,7 @@ class RepositoryComment extends Database
     {
         $req = $this->connectDB()->prepare('INSERT INTO comments (email, chapter_id, pseudo, comment, date) VALUES(?, ?, ?, ?, NOW())');
         
-        $req->execute(array($insertcom->email(), $insertcom->chapterId(), $insertcom->pseudo(), $insertcom->comment()));
+        $req->execute(array($insertcom->getEmail(), $insertcom->getChapterId(), $insertcom->getPseudo(), $insertcom->getComment()));
         
         $req->closeCursor();
     }
@@ -96,11 +86,12 @@ class RepositoryComment extends Database
         
         $req = $this->connectDB()->prepare(
             'SELECT *, 
-            '.$this->_dateComment_2.' 
+            date AS commentDate 
             FROM comments 
             WHERE alarm > 0 
             ORDER BY alarm 
-            DESC');
+            DESC'
+        );
         $req->execute(); 
         while($data = $req->fetch())
         {
@@ -117,7 +108,7 @@ class RepositoryComment extends Database
         
         $req = $this->connectDB()->prepare(
             'SELECT id, pseudo, comment, alarm, email, 
-            '.$this->_dateComment_1.' 
+            date AS commentDate 
             FROM comments 
             ORDER BY id 
             DESC'
@@ -150,7 +141,7 @@ class RepositoryComment extends Database
     }
     
     // Décompte du nombre total de commentaires (sans tri de signalements)
-    public function countAlarmComments2()
+    public function countNumberComments()
     {
         $req = $this->connectDB()->prepare('SELECT COUNT(id) FROM comments');
         $req->execute();
