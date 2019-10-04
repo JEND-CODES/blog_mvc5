@@ -30,73 +30,6 @@ spl_autoload_register(function($modelClass){
     require('models/' .$modelClass. '.php');
 });
 
-
-// Test de scan du dossier Controllers pour appeler les pages dans le Router :
-/*
-$dir    = 'controllers/';
-$files1 = scandir($dir);
-
-$files2 = preg_replace('/controller/', '', $files1);
-           
-$files3 = preg_replace('/.php/', '', $files2);
-
-print_r($files3[3]);
-*/
-
-// Comment faire en sorte que le scan du dossier Controllers, qui renvoie les noms des fichiers, devienne un array "lisible" pour des $_GET automatisés -> suivis d'une boucle foreach ???
-
-/*
-$char = array('A'=>'biographie');
-
-if(isset($_GET['action']))
-    {
-    foreach($char as $letter => $number) 
-    {
-        switch($letter) 
-        {
-            case 'A':
-                require('controllers/controllerBiographie.php');
-                $controllerBiographie = new ControllerBiographie(); 
-                
-                $controllerBiographie->Biographie();
-                break;
-            
-            
-            default:
-                throw new Exception('');
-                break;
-        }
-    }
-}
-*/
-
-/*
-// Affiche les noms des fichiers d'un dossier
-$dir = "controllers/";
-//  si le dossier pointé existe
-if (is_dir($dir)) {
-
-   // si il contient quelque chose
-   if ($dh = opendir($dir)) {
-
-       // boucler tant que quelque chose est trouvé
-       while (($file = readdir($dh)) !== false) {
-
-           // afficher le nom
-           
-           $test = preg_replace('/controller/', '', "$file");
-           
-           $test2 = preg_replace('/.php/', '', "$test");
-           
-           echo "$test2" . "|";
-   
-       }
-       // on ferme la connection
-       closedir($dh);
-   }
-}
-*/
-
 // Contrôle de l'affichage des pages :
 try
 {
@@ -111,30 +44,7 @@ try
         else {
             throw new Exception('');
         } 
-        
-        // Premiers tests en vue de simplifier (puis d'automatiser?) le Router :
-        
-            // Question : si on plaçait les noms des pages dans un array(), on pourrait récupérer automatiquement les noms des fichiers du dossier Controllers, pour ensuite auto-compléter le "switch case" du Routeur ?
-        
-            /*
-            
-            Un peu en suivant cette voie.. ?
-
-            $dir    = 'controllers/';
-            $files = scandir($dir);
-
-            $files_names = explode('.php',serialize($files));
-
-            $files_names2 = serialize($files_names[5]);
-
-            echo '<p>';            
-            echo $files_names2;
-            echo '</p>';
-            
-            //Renvoie "s:26:"";i:8;s:18:"controllerEdit";"
-
-            */
-        
+       
         $pages  = "test|biographie|change|chapitre|commentaires|connect|edit|home|login|nosession|password|slider|sommaire|statistiques";
         
         $surf = explode("|", $pages);
@@ -262,7 +172,7 @@ try
                 $instance_13->{$className}();
                 break;
                 
-        // Ces numéros dépassent le nombre de fichiers dans le dossier Controllers (on pourrait aisément en mettre 100,200,300 supplémentaires pour une grosse appli qui a besoin de créer des pages tout le temps ??) :
+        // Ces numéros dépassent le nombre de fichiers dans le dossier Controllers (on pourrait aisément en mettre 100,200,300.. supplémentaires pour une grosse appli qui a besoin de créer des pages tout le temps ??) :
                 
             case $surf[14]:
                 $className = ucfirst($surf[14]);
