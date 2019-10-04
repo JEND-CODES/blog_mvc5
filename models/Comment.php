@@ -28,31 +28,31 @@ class Comment
     }
     
     
-    public function id()
+    public function getId()
     {
         return $this->_id;   
     }
-    public function email()
+    public function getEmail()
     {
         return $this->_email;   
     }
-    public function chapterId()
+    public function getChapterId()
     {
         return $this->_chapterId;   
     }
-    public function pseudo()
+    public function getPseudo()
     {
         return $this->_pseudo;   
     }
-    public function comment()
+    public function getComment()
     {
         return $this->_comment;   
     }
-    public function alarm()
+    public function getAlarm()
     {
         return $this->_alarm;   
     }
-    public function commentDate()
+    public function getCommentDate()
     {
         return $this->_commentDate;   
     }
