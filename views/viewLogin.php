@@ -7,7 +7,7 @@ $nav_title = "Connexion";
 </header>
 
 <section class="container">
-    <br><br><br>
+    <br /><br /><br />
 
     <div class="row" id="form-comment">
 
@@ -47,6 +47,6 @@ $nav_title = "Connexion";
     
 </section>
 
-<br><br><br>
+<br /><br /><br />
 
 <?php require_once('views/footer.php'); ?>
