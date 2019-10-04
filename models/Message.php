@@ -24,26 +24,27 @@ class Message
         }
     }
   
-    public function id()
+    public function getId()
     {
         return $this->_id;    
     }
-    public function email()
+    public function getEmail()
     {
         return $this->_email;    
     }
-    public function infoname()
+    public function getInfoname()
     {
         return $this->_infoname;    
     }
-    public function content()
+    public function getContent()
     {
         return $this->_content;    
     }
-    public function messageDate()
+    public function getMessageDate()
     {
         return $this->_messageDate;
     }
+    
     public function setId($id)
     {
         $id = (int) $id;
