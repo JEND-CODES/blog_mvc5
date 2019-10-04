@@ -8,11 +8,11 @@ $nav_title = "Modifier le mot de passe";
 
 <section class="container">
 
-    <br>
+    <br />
 
     <a href="connect" class="btn"><i class="fas fa-arrow-left"></i></a>
 
-    <br><br><br>
+    <br /><br /><br />
 
     <div class="centered">
 
@@ -51,7 +51,7 @@ $nav_title = "Modifier le mot de passe";
             </div>
 
             <div class="col s6">
-                <br><br><br><br>
+                <br /><br /><br /><br />
             </div>
 
             <div class="input-field col s6">
@@ -74,6 +74,6 @@ $nav_title = "Modifier le mot de passe";
 
 </section>
 
-<br><br>
+<br /><br />
 
 <?php require_once('views/footer.php'); ?>
