@@ -12,7 +12,7 @@ class ControllerLogin
         $this->admin_log = new RepositoryConnect();
     }
     
-    public function Login()
+    public function __invoke()
     {
 
         session_start();
