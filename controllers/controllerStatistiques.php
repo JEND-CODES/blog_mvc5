@@ -3,7 +3,7 @@
 class ControllerStatistiques
 {
     
-    public function Statistiques()
+    public function __invoke()
     {
   
         session_start();
