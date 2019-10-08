@@ -11,7 +11,7 @@ class ControllerSlider
         $this->slides = new RepositoryBackground();
     }
     
-    public function Slider()
+    public function __invoke()
     {
    
         session_start();
