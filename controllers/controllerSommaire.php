@@ -11,7 +11,7 @@ class ControllerSommaire
         $this->book = new RepositoryChapter();
     }
     
-    public function Sommaire()
+    public function __invoke()
     {
         
         $chapters2 = $this->book->selectChaptersAsc();
