@@ -1,29 +1,12 @@
 <?php
-class Background
+class Background extends Common
 {
     private $_id;
     private $_title;
     private $_content;
     private $_backgroundDate;
-    
    
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
-    }
-  
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-           
-        {
-            $method = 'set'.ucfirst($key);
-            
-            if(method_exists($this, $method))
-                $this->$method($value);
-        }
-    }
-  
+    
     public function getId()
     {
         return $this->_id;    
@@ -41,6 +24,7 @@ class Background
         return $this->_backgroundDate;
     }   
   
+    
     public function setId($id)
     {
         $id = (int) $id;
