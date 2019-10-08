@@ -12,7 +12,7 @@ class ControllerPassword
         $this->new_pass = new RepositoryConnect();
     }
     
-    public function Password()
+    public function __invoke()
     {
 
         session_start();
