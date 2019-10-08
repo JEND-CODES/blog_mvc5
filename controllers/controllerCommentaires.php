@@ -11,7 +11,7 @@ class ControllerCommentaires
         $this->back_comment = new RepositoryComment();
     }
     
-    public function Commentaires()
+    public function __invoke()
     {
       
         session_start();
