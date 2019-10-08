@@ -12,7 +12,7 @@ class ControllerEdit
         $this->new_chapter = new RepositoryChapter();
     }
     
-    public function Edit()
+    public function __invoke()
     {
 
         session_start();
