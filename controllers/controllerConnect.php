@@ -24,7 +24,7 @@ class ControllerConnect
         $this->admin_messages = new RepositoryMessage();
     }
     
-    public function Connect()
+    public function __invoke()
     {
   
         session_start();
