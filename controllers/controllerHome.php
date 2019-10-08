@@ -23,7 +23,7 @@ class ControllerHome
         
     }
     
-    public function Home()
+    public function __invoke()
     {
 
         // Permet d'appeler la function du RepositoryChapter en suivant la méthode "__construct"
