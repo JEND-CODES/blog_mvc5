@@ -3,7 +3,7 @@
 class ControllerNosession
 {
     
-    public function Nosession()
+    public function __invoke()
     {
   
         //session_start — Démarre une nouvelle session ou reprend une session existante
