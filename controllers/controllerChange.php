@@ -11,7 +11,7 @@ class ControllerChange
         $this->post_bis = new RepositoryChapter();
     }
     
-    public function Change()
+    public function __invoke()
     {
    
         session_start();
