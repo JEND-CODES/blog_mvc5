@@ -3,7 +3,7 @@ Avancées principales / Finalisations :
 -> Fonctions publiques Controllers
 -> Appel des classes Controllers dans le Router
 -> Programmation orientée objets des Controllers
--> Méthode __construct() et ajout de propriétés privées
+-> Méthodes __construct(), __invoke() et ajout de propriétés privées
 -> Révisions de l'architecture du projet
 -> Vérifications et corrections d'erreurs HTML pour toutes les pages
 -> Révision des Polices du site
@@ -24,4 +24,5 @@ Avancées principales / Finalisations :
 -> Renommages des fonctions Getters avec "get"
 -> Conversions PHP du format des dates SQL avec strtotime()
 -> Style.css préventions des dépassements de champs avec break-work;
+-> Extension de la méthode d'hydratation dans les Models (fichier Common)
 -> Instanciation automatique des Classes Controllers dans le Router
