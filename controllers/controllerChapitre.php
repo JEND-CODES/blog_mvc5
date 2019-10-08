@@ -14,7 +14,7 @@ class ControllerChapitre
         $this->commentaries = new RepositoryComment();
     }
  
-    public function Chapitre()
+    public function __invoke()
     {
     
         // Contrôle du paramètre Get correspondant à l'Id 
