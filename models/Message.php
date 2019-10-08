@@ -1,5 +1,5 @@
 <?php
-class Message
+class Message extends Common
 {
     private $_id;
     private $_email;
@@ -7,23 +7,7 @@ class Message
     private $_content;
     private $_messageDate;
     
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
-    }
-  
-    public function hydrate(array $data)
-    {
-        foreach($data as $key => $value)
-           
-        {
-            $method = 'set'.ucfirst($key);
-            
-            if(method_exists($this, $method))
-                $this->$method($value);
-        }
-    }
-  
+    
     public function getId()
     {
         return $this->_id;    
@@ -44,6 +28,7 @@ class Message
     {
         return $this->_messageDate;
     }
+    
     
     public function setId($id)
     {
@@ -76,4 +61,4 @@ class Message
   
 }
 
-?>
+
